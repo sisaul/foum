@@ -1,0 +1,71 @@
+"use client"
+
+import Image from 'next/image';
+
+interface ImageSectionProps {
+  images: {
+    src: string;
+    alt: string;
+  }[];
+  caption?: string;
+  fullWidth?: boolean;
+  layout?: 'grid' | 'single';
+  columns?: 2 | 3 | 4;
+}
+
+export default function ImageSection({ 
+  images, 
+  caption, 
+  fullWidth = false,
+  layout = 'grid',
+  columns = 3 
+}: ImageSectionProps) {
+  if (!images || images.length === 0) {
+    return null;
+  }
+
+  // Column configuration
+  const gridCols = {
+    2: 'md:grid-cols-2',
+    3: 'md:grid-cols-3',
+    4: 'md:grid-cols-4'
+  };
+
+  if (layout === 'single' && images.length > 0) {
+    // Single large image layout
+    return (
+      <section className={`py-4 md:py-6 ${fullWidth ? 'w-full' : 'px-8 md:px-16'}`}>
+        <div className="relative aspect-[16/9] w-full">
+          <Image
+            src={images[0].src}
+            alt={images[0].alt || 'Featured image'}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        {caption && <p className="mt-2 text-sm font-['Grob-light'] text-gray-700 leading-tight">{caption}</p>}
+      </section>
+    );
+  }
+
+  // Grid layout
+  return (
+    <section className={`py-4 md:py-6 ${fullWidth ? 'w-full' : 'px-8 md:px-16'}`}>
+      <div className={`grid grid-cols-1 ${gridCols[columns]} gap-6 md:gap-8`}>
+        {images.map((image, index) => (
+          <div key={index} className="relative aspect-square">
+            <Image
+              src={image.src}
+              alt={image.alt || 'Product image'}
+              fill
+              className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
+      {caption && <p className="mt-3 text-sm font-light text-gray-700 leading-tight">{caption}</p>}
+    </section>
+  );
+}
+

@@ -1,0 +1,323 @@
+# Development Plan:
+
+**Start Date**: March 11, 2025
+
+**Estimated Completion**: April 8, 2025 (4 weeks)
+
+## 1. Project Overview
+
+- **Objective**: Build a modular portfolio website for FOUM Studio with dynamic project pages (e.g., /studio/foum), integrating Next.js, Sanity, and Tailwind CSS. Clients will manage content (e.g., sections like Header, Showroom, Carousel) via Sanity Studio.
+- **Key Features**: Header, ShowroomSection, ProjectPreview, TextBlock, ImageGrid, TwoProductGrid, ProductTextGrid, ImageCarousel, ContactForm, Footer, and dynamic section rendering.
+
+## 2. Tech Stack
+
+- **Frontend**:
+    - **Next.js**: Version 14.x (for static site generation and dynamic routing).
+    - **React**: For component-based UI.
+    - **Tailwind CSS**: Version 3.x (for utility-first styling).
+- **CMS**:
+    - **Sanity**: Latest version (headless CMS with hosted Studio).
+    - **@sanity/client**: For API queries.
+    - **@sanity/image-url**: For image URL generation.
+- **Styling**: Tailwind CSS with custom configurations.
+- **Hosting/Deployment**: Vercel (for Next.js) and Sanity’s hosted Studio.
+- **Additional Tools**:
+    - **Node.js**: Version 18.x (runtime).
+    - **npm**: Package manager.
+    - **Git**: Version control.
+- **Optional**: react-slick or swiper (for enhanced carousel functionality, if needed).
+
+## 3. Step-by-Step Development Plan
+
+### Week 1: Setup and Initial Configuration
+
+**Duration**: March 11 - March 17, 2025
+
+**Goal**: Establish the project foundation.
+
+### Tasks
+
+1. **Initialize Next.js Project**
+    - Run: npx create-next-app@latest foum-studio --ts
+    - Install dependencies: npm install tailwindcss postcss autoprefixer @sanity/client @sanity/image-url
+    - Configure Tailwind: npx tailwindcss init -p
+    - Update tailwind.config.js and globals.css (see below).
+2. **Set Up Sanity**
+    - Create a Sanity project: sanity init
+    - Install Sanity CLI: npm install -g @sanity/cli
+    - Define initial schema (project.js) with all section types (Header, ShowroomSection, etc.).
+    - Deploy Sanity Studio: sanity deploy.
+3. **Configure Environment Variables**
+    - Create .env.local with:
+        
+        text
+        
+        CollapseWrapCopy
+        
+        `SANITY_PROJECT_ID=<your-project-id>
+        SANITY_DATASET=production
+        SANITY_API_TOKEN=<read-token>`
+        
+    - Add to .gitignore.
+4. **Create Utility Files**
+    - Set up /lib/sanity.js with client and urlFor helper (from previous responses).
+
+### Deliverables
+
+- Working Next.js project with Tailwind CSS.
+- Sanity Studio with basic project schema.
+- Environment variables and utility files.
+
+### Stack Details
+
+- next: 14.x
+- tailwindcss: 3.x
+- @sanity/client: Latest
+- Node.js: 18.x
+
+---
+
+### Week 2: Component Development
+
+**Duration**: March 18 - March 24, 2025
+
+**Goal**: Build and test modular components.
+
+### Tasks
+
+1. **Generate Base Components with v0.dev**
+    - Use the refined prompt (from the previous response) in v0.dev.
+    - Download and place components in /components/ (Header, ShowroomSection, ProjectPreview, TextBlock, ImageGrid, TwoProductGrid, ProductTextGrid, ImageCarousel, ContactForm, Footer, SectionRenderer).
+2. **Adjust Components for Sanity**
+    - Modify each component to use urlFor for image URLs.
+    - Ensure props match Sanity schema fields (e.g., images array for ImageCarousel).
+3. **Implement SectionRenderer**
+    - Create /components/SectionRenderer.js to dynamically render sections based on Sanity data.
+4. **Initial Testing**
+    - Run npm run dev and verify component rendering with hardcoded props.
+
+### Deliverables
+
+- All 10 components implemented and adjusted for Sanity.
+- Functional SectionRenderer with basic testing.
+
+### Stack Details
+
+- Use Tailwind classes for responsive design (e.g., grid-cols-1 md:grid-cols-2).
+- Next.js Image component for optimization.
+
+---
+
+### Week 3: Page Development and Integration
+
+**Duration**: March 25 - March 31, 2025
+
+**Goal**: Build dynamic pages and integrate with Sanity.
+
+### Tasks
+
+1. **Create Studio Page**
+    - Develop /pages/studio/index.js to list projects (ProjectPreview components).
+    - Implement getStaticProps to fetch project data from Sanity.
+2. **Create Project Subpage**
+    - Develop /pages/studio/[slug].js with getStaticPaths and getStaticProps.
+    - Integrate SectionRenderer to render project sections.
+3. **Sanity Content Setup**
+    - Add sample projects in Sanity Studio with various sections (e.g., ShowroomSection, ImageCarousel).
+    - Test dynamic rendering of subpages (e.g., /studio/milan-design-week).
+4. **Styling and Responsiveness**
+    - Refine Tailwind styles to match Figma (e.g., #EDE6D6 background, Montserrat font).
+    - Ensure mobile-first design (stacked grids on mobile, multi-column on desktop).
+
+### Deliverables
+
+- Fully functional /studio and /studio/[slug] pages.
+- Sample content in Sanity Studio.
+- Responsive design matching Figma.
+
+### Stack Details
+
+- Sanity queries in getStaticProps.
+- Tailwind customizations in tailwind.config.js.
+
+---
+
+### Week 4: Testing, Optimization, and Deployment
+
+**Duration**: April 1 - April 8, 2025
+
+**Goal**: Finalize and launch the website.
+
+### Tasks
+
+1. **Testing**
+    - Test all sections across devices (mobile, tablet, desktop).
+    - Verify Sanity updates reflect in real-time (ISR with revalidate: 10).
+    - Check form submission (basic frontend validation; backend integration optional).
+2. **Optimization**
+    - Optimize images with Next.js Image (lazy loading, proper sizes).
+    - Analyze performance (e.g., Lighthouse score > 90).
+3. **Deployment**
+    - Push to GitHub: git add ., git commit, git push.
+    - Deploy to Vercel: vercel.
+    - Deploy Sanity Studio updates: sanity deploy.
+4. **Client Training**
+    - Provide a guide for Sanity Studio usage (add/edit sections, upload images).
+    - Conduct a handover session.
+
+### Deliverables
+
+- Deployed website on Vercel.
+- Client-ready Sanity Studio guide.
+- Optimized and tested application.
+
+### Stack Details
+
+- Vercel for hosting.
+- Sanity CDN for content delivery.
+
+---
+
+## 4. Milestones
+
+- **End of Week 1**: Project initialized with Sanity and Tailwind.
+- **End of Week 2**: All components built and tested locally.
+- **End of Week 3**: Dynamic pages integrated with Sanity.
+- **End of Week 4**: Deployed site with client training.
+
+## 5. Risks and Mitigations
+
+- **Risk**: Sanity schema errors break rendering.
+    - **Mitigation**: Test schema changes locally before deployment.
+- **Risk**: Performance issues with large images.
+    - **Mitigation**: Use Next.js Image with lazy loading and Sanity CDN.
+- **Risk**: Client struggles with Sanity.
+    - **Mitigation**: Provide detailed documentation and a video tutorial.
+
+## 6. Resources
+
+- **Developer**: 1 person (you), ~20-25 hours/week.
+- **Tools**: VS Code, Terminal, Vercel Dashboard, Sanity Studio.
+- **Budget**: Free tier for Sanity and Vercel; potential costs for premium plans if scaling.
+
+## 7. Success Criteria
+
+- Client can add/edit projects and sections in Sanity Studio.
+- Page load time < 2 seconds (First Contentful Paint).
+- All Figma sections (Header, Showroom, etc.) are implemented and responsive.
+- Positive client feedback on usability.
+
+---
+
+### Example Implementation Details
+
+### /lib/sanity/client.ts
+
+`import { createClient } from '@sanity/client';
+
+export const sanityClient = createClient({
+  projectId: process.env.SANITY_PROJECT_ID,
+  dataset: 'production',
+  useCdn: true,
+  apiVersion: '2023-05-03',
+});`
+
+### /lib/sanity/queries.ts
+
+`export const getAllProjectsQuery = `*[_type == "project"]{title, slug, sections}`;
+export const getProjectBySlugQuery = `*[_type == "project" && slug.current == $slug][0]{title, slug, sections}`;`
+
+### /lib/sanity/types.ts
+
+`export interface Section {
+  _type: string;
+  imageUrl?: any;
+  title?: string;
+  text?: string;
+  images?: { url: any; caption?: string }[];
+  products?: { imageUrl: any; title: string; slug: string }[];
+}
+
+export interface Project {
+  title: string;
+  slug: { current: string };
+  sections: Section[];
+}`
+
+### /components/sections/section-renderer.tsx
+
+`import { Section } from '@/lib/sanity/types';
+import HeroSection from './hero-section';
+import ImageSection from './image-section';
+import ImageCarousel from './image-carousel';
+import ProductGridSection from './product-grid-section';
+import ProductTextSection from './product-text-section';
+import TextSection from './text-section';
+import ProjectPreviewSection from './project-preview-section';
+
+interface SectionRendererProps {
+  sections: Section[];
+}
+
+export default function SectionRenderer({ sections }: SectionRendererProps) {
+  return (
+    <div>
+      {sections.map((section, index) => {
+        switch (section._type) {
+          case 'heroSection':
+            return <HeroSection key={index} imageUrl={section.imageUrl} title={section.title} description={section.description} />;
+          case 'imageSection':
+            return <ImageSection key={index} imageUrl={section.imageUrl} />;
+          case 'imageCarousel':
+            return <ImageCarousel key={index} images={section.images} />;
+          case 'productGridSection':
+            return <ProductGridSection key={index} products={section.products} />;
+          case 'productTextSection':
+            return <ProductTextSection key={index} imageUrl={section.imageUrl} title={section.title} text={section.text} linkText={section.linkText} />;
+          case 'textSection':
+            return <TextSection key={index} content={section.content} />;
+          case 'projectPreviewSection':
+            return <ProjectPreviewSection key={index} imageUrl={section.imageUrl} title={section.title} slug={section.slug} />;
+          default:
+            return null;
+        }
+      })}
+    </div>
+  );
+}`
+
+### /app/studio/[slug]/page.tsx
+
+`import { sanityClient } from '@/lib/sanity/client';
+import { getProjectBySlugQuery } from '@/lib/sanity/queries';
+import { Project } from '@/lib/sanity/types';
+import SectionRenderer from '@/components/sections/section-renderer';
+
+interface ProjectPageProps {
+  params: { slug: string };
+}
+
+export async function generateStaticParams() {
+  const projects = await sanityClient.fetch<{ slug: { current: string } }[]>(
+    `*[_type == "project"]{slug}`
+  );
+  return projects.map((project) => ({
+    slug: project.slug.current,
+  }));
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const project: Project = await sanityClient.fetch(getProjectBySlugQuery, { slug: params.slug });
+
+  if (!project) {
+    return <div>Project not found</div>;
+  }
+
+  return (
+    <div className="bg-[#EDE6D6] min-h-screen">
+      <SectionRenderer sections={project.sections} />
+    </div>
+  );
+}
+
+export const revalidate = 10; *// ISR*`
