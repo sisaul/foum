@@ -22,16 +22,18 @@ export default function Layout({ children }: LayoutProps) {
   const pathname = usePathname()
   const isHomePage = pathname === '/'
 
-  let bgColor = "bg-[#e9e4dd]"
-  let textColor = "text-black"
-  let darkMode = false
+  let bgColor = "bg-[#e9e4dd]"    // Default light background
+  let textColor = "text-black"      // Default dark text
+  let darkMode = false          // Flag for component props
 
   if (pathname?.startsWith('/studio')) {
-    bgColor = "bg-[#1b1919]"
-    textColor = "text-white"
+    bgColor = "bg-[#1b1919]"    // Studio dark bg
+    textColor = "text-white"      // Studio light text
     darkMode = true
   } else if (pathname?.startsWith('/stories')) {
-    bgColor = "bg-[#ddc174]"
+    bgColor = "bg-[#1B1919]"    // Stories dark bg (#1B1919)
+    textColor = "text-[#E9E4DD]" // Stories light text (#E9E4DD)
+    darkMode = true
   }
 
   return (

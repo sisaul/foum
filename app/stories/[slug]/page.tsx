@@ -1,9 +1,5 @@
-import Layout from "@/components/layout"
-import HeroSection from "@/components/sections/hero-section"
-import TextSection from "@/components/sections/text-section"
-import TitleSection from "@/components/sections/title-section"
-import ImageSection from "@/components/sections/image-section"
-import ProductCarousel from "@/components/sections/product-carousel"
+import Image from 'next/image'
+import Layout from "@/components/layout";
 
 interface StoryPageProps {
   params: {
@@ -11,64 +7,43 @@ interface StoryPageProps {
   }
 }
 
-export default function StoryPage({ params }: StoryPageProps) {
-  // This would normally come from a CMS or API
-  const storyData = {
-    title: "KITCHEN INSPIRATION",
-    date: "SEPTEMBER 2023",
-    heroImage: {
-      src: "/placeholder.svg?height=1200&width=2400",
-      alt: "Kitchen Design",
-    },
-    content:
-      "At the recent Milan Design Week, a prominent trend in kitchen design was the innovative use of steel and other industrial metals, reflecting a blend of different aesthetics and functionalities. This fusion of materials and design approaches demonstrates how raw elements can be employed to create sleek, modern kitchen spaces that are both functional and environmentally conscious.",
-    sections: [
-      {
-        title: "STAINLESS STEEL",
-        description:
-          "Stainless steel continues to be a favored material in contemporary kitchen design. Its durability, ease of maintenance, and timeless appeal make it an ideal choice for various kitchen elements, including countertops, cabinetry, and appliances.",
-        images: [
-          { src: "/placeholder.svg?height=800&width=800", alt: "Stainless Steel Kitchen 1" },
-          { src: "/placeholder.svg?height=800&width=800", alt: "Stainless Steel Kitchen 2" },
-        ],
-      },
-      {
-        title: "SUSTAINABILITY",
-        description:
-          "A significant theme at Milan Design Week was the focus on sustainable materials and practices. The use of natural materials, recycled stone and mushroom-made items align with this ethos, offering environmentally friendly options for kitchen design.",
-        images: [
-          { src: "/placeholder.svg?height=800&width=800", alt: "Sustainable Kitchen 1" },
-          { src: "/placeholder.svg?height=800&width=800", alt: "Sustainable Kitchen 2" },
-        ],
-      },
-    ],
-    relatedProducts: [
-      {
-        title: "MILAN DESIGN WEEK OVERVIEW",
-        slug: "milan-design-week",
-        imageSrc: "/placeholder.svg?height=400&width=400",
-      },
-      { title: "GONSIORI FLAT, TALLINN", slug: "gonsiori-flat", imageSrc: "/placeholder.svg?height=400&width=400" },
-      { title: "SHELF MINI", slug: "shelf-mini", imageSrc: "/placeholder.svg?height=400&width=400" },
-      { title: "CUSTOM MADE VASE", slug: "custom-made-vase", imageSrc: "/placeholder.svg?height=400&width=400" },
-    ],
+const stories = [
+  { title: "Cafe Rummu Interior", slug: "cafe-rummu", imageSrc: "/images/cafe-rummu.png", description: "Detailed description for Cafe Rummu..." },
+  { title: "Ciao Package Design", slug: "ciao-package", imageSrc: "/images/ciao-package.png", description: "Detailed description for Ciao Package..." },
+  { title: "Kunderi Flat Renovation", slug: "kunderi-flat", imageSrc: "/images/kunderi-flati.png", description: "Detailed description for Kunderi Flat..." },
+  { title: "Gonsiori Flat Staging", slug: "gonsiori-flat", imageSrc: "/images/gonsiori-flat.png", description: "Detailed description for Gonsiori Flat..." },
+  { title: "Frost Spa Concept", slug: "frost-spa", imageSrc: "/images/frost-spa.png", description: "Detailed description for Frost Spa..." },
+];
+
+async function getStory(slug: string) {
+  // In a real app, fetch this from your CMS (Sanity)
+  return stories.find(story => story.slug === slug);
+}
+
+export default async function StoryPage({ params }: StoryPageProps) {
+  const story = await getStory(params.slug);
+
+  if (!story) {
+    return <div>Story not found</div>;
   }
 
   return (
-    <Layout bgColor="bg-[#ddc17f]">
-      <div className="px-8 py-8">
-        <HeroSection image={storyData.heroImage} title={storyData.title} date={storyData.date} />
-
-        <TextSection content={storyData.content} />
-
-        {storyData.sections.map((section, index) => (
-          <div key={index} className="mb-16">
-            <TitleSection title={section.title} description={section.description} />
-            <ImageSection images={section.images} />
+    <Layout>
+      <div className="px-8 md:px-16 py-12 md:py-16">
+        <h1 className="text-3xl md:text-5xl font-bold mb-8 text-center">{story.title}</h1>
+        <div className="relative aspect-video mb-8 w-full max-w-5xl mx-auto">
+          <Image
+            src={story.imageSrc}
+            alt={story.title}
+            fill
+            className="object-contain"
+          />
+        </div>
+        {story.description && (
+          <div className="prose prose-invert dark:prose-invert lg:prose-xl max-w-3xl mx-auto">
+            <p>{story.description}</p>
           </div>
-        ))}
-
-        <ProductCarousel products={storyData.relatedProducts} />
+        )}
       </div>
     </Layout>
   )

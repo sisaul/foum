@@ -19,11 +19,11 @@ export default function Header({ navItems, darkMode = false }: HeaderProps) {
   const textColor = darkMode ? "text-white" : "text-black"
   const [isScrolled, setIsScrolled] = useState(false)
 
-  const scrolledBgColor = darkMode ? "bg-[#1b1919]" : "bg-[#e9e4dd]"
+  const scrolledBgColor = darkMode ? "bg-[#1b1919]/95" : "bg-[#e9e4dd]/95"
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
+      setIsScrolled(window.scrollY > 50)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -35,17 +35,17 @@ export default function Header({ navItems, darkMode = false }: HeaderProps) {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-[999] w-full flex justify-between items-start py-8 px-5 md:px-8 transition-colors duration-300 ease-in-out ${isScrolled ? `${scrolledBgColor} shadow-sm border-b border-black/5` : 'bg-transparent'}`}
+      className={`fixed top-0 left-0 right-0 z-[999] w-full flex justify-between items-start py-6 px-8 md:px-16 transition-colors duration-300 ease-in-out ${isScrolled ? `${scrolledBgColor} shadow-md border-b border-black/10 dark:border-white/10` : 'bg-transparent'}`}
     >
-      <Link href="/" className={`${textColor} text-[120px] md:text-[180px] font-bold leading-[0.85] tracking-tighter`}>
+      <Link href="/" className={`${textColor} text-[100px] md:text-[160px] font-bold leading-[0.85] tracking-tighter`}>
         FOUM
       </Link>
-      <nav className={`flex space-x-12 md:space-x-40 ${textColor} text-lg mt-4`}>
+      <nav className={`flex space-x-8 md:space-x-12 ${textColor} text-base uppercase font-medium pt-2`}>
         {navItems.map((item) => (
           <Link 
             key={item.path}
             href={item.path}
-            className={`${pathname.includes(item.path) ? "font-bold" : ""} hover:opacity-70 transition-opacity`}
+            className={`${pathname === item.path ? "underline decoration-1 underline-offset-4" : ""} hover:opacity-70 transition-opacity`}
           >
             {item.title}
           </Link>

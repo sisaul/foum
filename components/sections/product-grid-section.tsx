@@ -6,6 +6,9 @@ interface Product {
   title: string
   slug: string
   imageSrc: string
+  basePath?: string
+  viewDetailsText?: string
+  linkClassName?: string
 }
 
 interface ProductGridProps {
@@ -29,7 +32,9 @@ export default function ProductGridSection({ products, columns = 2 }: ProductGri
             title={product.title}
             imageSrc={product.imageSrc}
             slug={product.slug}
-            viewDetailsText="VIEW DETAILS"
+            basePath={product.basePath}
+            viewDetailsText={product.viewDetailsText}
+            linkClassName={product.linkClassName}
           />
         ))}
       </div>

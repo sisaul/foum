@@ -1,5 +1,5 @@
-import Layout from "@/components/layout"
 import ProjectCard from "@/components/project-card"
+import Layout from "@/components/layout"
 
 export default function StudioPage() {
   const projects = [
@@ -11,8 +11,8 @@ export default function StudioPage() {
   ]
 
   return (
-    <Layout bgColor="bg-black" invertNavbar={true}>
-      <div className="px-8 py-8 text-white">
+    <Layout>
+      <div className="px-8 py-8">
         <div className="mb-16">
           <p className="text-lg mb-8 max-w-2xl">
             FOUM Studio is an interior architecture studio by Anna-Grete Konsap and Kaarel Lüht. Fueled by curiosity and

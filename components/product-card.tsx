@@ -8,12 +8,21 @@ interface ProductCardProps {
   imageSrc: string
   slug: string
   viewDetailsText?: string
+  basePath?: string
+  linkClassName?: string
 }
 
-export default function ProductCard({ title, imageSrc, slug, viewDetailsText = "VIEW DETAILS" }: ProductCardProps) {
+export default function ProductCard({ 
+  title, 
+  imageSrc, 
+  slug, 
+  viewDetailsText = "VIEW DETAILS", 
+  basePath = "/products",
+  linkClassName = ""
+}: ProductCardProps) {
   return (
     <div className="flex flex-col">
-      <Link href={`/products/${slug}`} className="block group">
+      <Link href={`${basePath}/${slug}`} className="block group">
         <div className="relative aspect-square mb-2">
           <Image
             src={imageSrc}
@@ -26,8 +35,8 @@ export default function ProductCard({ title, imageSrc, slug, viewDetailsText = "
       <div className="pt-4 flex justify-between items-start">
         <h3 className="text-base uppercase font-medium leading-tight">{title}</h3>
         <Link 
-          href={`/products/${slug}`} 
-          className="text-base uppercase font-medium hover:opacity-70 transition-opacity leading-tight underline decoration-1 underline-offset-4"
+          href={`${basePath}/${slug}`}
+          className={`text-base uppercase font-medium hover:opacity-70 transition-opacity leading-tight ${linkClassName}`}
         >
           {viewDetailsText}
         </Link>

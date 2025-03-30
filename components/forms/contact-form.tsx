@@ -8,7 +8,8 @@ interface ContactFormProps {
 
 export default function ContactForm({ darkMode = false }: ContactFormProps) {
   const textColor = darkMode ? "text-white" : "text-black";
-  const inputBgColor = darkMode ? "bg-gray-800" : "bg-white";
+  const inputBgColor = "bg-white";
+  const inputTextColor = "text-black";
   const borderColor = darkMode ? "border-[#ffffff90]" : "border-[#00000090]";
   const hoverColor = darkMode ? "hover:opacity-70" : "hover:opacity-70";
 
@@ -30,7 +31,7 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
                   </label>
                   <input 
                     id="fullName" 
-                    className={`w-full h-10 ${inputBgColor} border-none focus:outline-none px-2 ${textColor}`} 
+                    className={`w-full h-10 ${inputBgColor} border-none focus:outline-none px-2 ${inputTextColor}`} 
                   />
                 </div>
                 
@@ -41,7 +42,7 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
                   <input 
                     id="email" 
                     type="email" 
-                    className={`w-full h-10 ${inputBgColor} border-none focus:outline-none px-2 ${textColor}`} 
+                    className={`w-full h-10 ${inputBgColor} border-none focus:outline-none px-2 ${inputTextColor}`} 
                   />
                 </div>
               </div>
@@ -84,7 +85,7 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
               </label>
               <textarea 
                 id="message" 
-                className={`w-full h-48 md:h-64 ${inputBgColor} border-none focus:outline-none resize-none px-2 py-2 ${textColor}`} 
+                className={`w-full h-48 md:h-64 ${inputBgColor} border-none focus:outline-none resize-none px-2 py-2 ${inputTextColor}`} 
               />
             </div>
           </div>
