@@ -1,6 +1,7 @@
 "use client"
 
-interface TitleSectionProps {
+// Export the interface
+export interface TitleSectionProps {
   title: string
   centered?: boolean
   size?: 'small' | 'medium' | 'large'
@@ -18,13 +19,12 @@ export default function TitleSection({
   }
 
   return (
-    <section className="py-4 md:py-6 px-8 md:px-16">
-      <div className={`${centered ? 'text-center' : ''}`}>
-        <h2 className={`${sizeClasses[size]} font-bold uppercase leading-none tracking-tight`}>
-          {title}
-        </h2>
-      </div>
-    </section>
+    // Remove padding from the section itself
+    <div className={`${centered ? 'text-center' : ''}`}>
+      <h2 className={`${sizeClasses[size]} font-bold uppercase leading-none tracking-tight`}>
+        {title}
+      </h2>
+    </div>
   )
 }
 

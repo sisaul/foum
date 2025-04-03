@@ -29,16 +29,28 @@ export default function ImageGrid({ images, columns = 2, withTitles = true, with
           {withLinks && image.slug ? (
             <Link href={`/studio/${image.slug}`}>
               <a>
-                <div className="relative aspect-[4/3] mb-2 bg-white">
-                  <Image src={image.src || "/placeholder.svg"} alt={image.alt} layout="fill" objectFit="cover" />
+                <div className="relative aspect-[4/3] w-full mb-2">
+                  <Image 
+                    src={image.src || "/placeholder.svg"} 
+                    alt={image.alt} 
+                    fill={true}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover" 
+                  />
                 </div>
                 {withTitles && <h3 className="text-sm font-medium uppercase">{image.title}</h3>}
               </a>
             </Link>
           ) : (
             <>
-              <div className="relative aspect-[4/3] mb-2 bg-white">
-                <Image src={image.src || "/placeholder.svg"} alt={image.alt} layout="fill" objectFit="cover" />
+              <div className="relative aspect-[4/3] w-full mb-2">
+                <Image 
+                  src={image.src || "/placeholder.svg"} 
+                  alt={image.alt} 
+                  fill={true}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover" 
+                />
               </div>
               {withTitles && <h3 className="text-sm font-medium uppercase">{image.title}</h3>}
             </>

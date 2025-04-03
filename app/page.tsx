@@ -36,11 +36,6 @@ export default function Home() {
     title: "FOUM IS A CUSTOMIZED FURNITURE BRAND BY INTERIOR ARCHITECTS AT FOUM STUDIO."
   }
 
-  const moreProducts = [
-    { title: "CANDLE HOLDER", imageSrc: "/images/candle-holder.jpg", slug: "candle-holder" },
-    { title: "CEILING LAMP", imageSrc: "/images/shelf-120.jpg", slug: "ceiling-lamp" }
-  ]
-
   const bedroomStory = {
     image: {
       src: "/images/mixing-mediums.jpg",
@@ -60,29 +55,31 @@ export default function Home() {
         image={heroData.image}
         title={heroData.title}
       />
-      <div className="px-8 md:px-16 flex flex-col gap-32">
-        <TwoProductGrid products={featuredProducts} columns={2} />
+      <div className="max-w-[88rem] mx-auto">
+        <div className="px-6 md:px-12 flex flex-col space-y-16 md:space-y-24 py-16 md:py-24">
+          <TwoProductGrid products={featuredProducts} columns={2} />
         
-        <ProductTextGrid 
-          image={kitchenStory.image}
-          title={kitchenStory.title}
-          description={kitchenStory.description}
-          link={kitchenStory.link}
-        />
+          <ProductTextGrid 
+            image={kitchenStory.image}
+            title={kitchenStory.title}
+            description={kitchenStory.description}
+            link={kitchenStory.link}
+          />
         
-        <TitleSection 
-          title={studioDescription.title}
-          centered={false}
-        />
+          <TitleSection 
+            title={studioDescription.title}
+            centered={false}
+          />
         
-        <TwoProductGrid products={featuredProducts} columns={2} />
+          <TwoProductGrid products={featuredProducts} columns={2} />
         
-        <ProductTextGrid 
-          image={bedroomStory.image}
-          title={bedroomStory.title}
-          description={bedroomStory.description}
-          link={bedroomStory.link}
-        />
+          <ProductTextGrid 
+            image={bedroomStory.image}
+            title={bedroomStory.title}
+            description={bedroomStory.description}
+            link={bedroomStory.link}
+          />
+        </div>
       </div>
     </Layout>
   )

@@ -4,7 +4,8 @@
 // import { PortableTextBlock } from '@portabletext/types'; // Example
 type PortableTextContent = object[]; // Use object[] as a slightly better placeholder than 'any'
 
-interface TextSectionProps {
+// Export the interface
+export interface TextSectionProps {
   // Use the specific type
   content?: PortableTextContent;
   // Example: Simple text content + alignment options
@@ -12,7 +13,8 @@ interface TextSectionProps {
   align?: 'left' | 'center' | 'right';
   maxWidth?: string; // e.g., 'max-w-4xl'
   paddingY?: string; // Add prop for vertical padding
-  width?: string; // Add prop for explicit width
+  width?: string; // Add prop for explicit width - Keep for general cases
+  layoutVariant?: 'default' | 'studioIntro'; // Add layout variant prop
 }
 
 export default function TextSection({ 
@@ -21,13 +23,20 @@ export default function TextSection({
   align = 'center', 
   maxWidth = 'max-w-none', // Default to no max-width if using explicit width
   paddingY = 'py-8 md:py-12',
-  width = '' // Remove the default width
+  width = '', // Remove the default width
+  layoutVariant = 'default' // Default variant
 }: TextSectionProps) {
   // Remove mx-auto when align is left or right
   const alignmentClass = 
     align === 'left' ? 'text-left' : 
     align === 'right' ? 'text-right' : 
     'text-center mx-auto'; // Only center alignment gets mx-auto
+
+  // Determine width class based on variant or explicit prop
+  const widthClass = 
+    layoutVariant === 'studioIntro' ? 'w-full md:w-2/3' :
+    width ? width :
+    'w-full'; // Default to full width if no specific width or variant
 
   // Prioritize rich content if available, otherwise use simple text
   const renderContent = () => {
@@ -48,9 +57,10 @@ export default function TextSection({
   };
 
   return (
-    <section className={`px-8 md:px-16 ${paddingY}`}>
-      {/* Apply alignment, width, and maxWidth classes */}
-      <div className={`${alignmentClass} ${width} ${maxWidth}`}>
+    // Removed horizontal padding (px-8 md:px-16) - rely on parent container
+    <section className={`${paddingY}`}>
+      {/* Apply alignment, width (now widthClass), and maxWidth classes */}
+      <div className={`${alignmentClass} ${widthClass} ${maxWidth}`}>
         {renderContent()}
       </div>
     </section>

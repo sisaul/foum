@@ -23,7 +23,7 @@ export default function ProductTextGrid({
   link, 
 }: ProductTextGridProps) {
   return (
-    <section className="px-8 md:px-16 py-5 md:py-8">
+    <section className="py-5 md:py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16">
         <div className="relative aspect-square">
           <Image 

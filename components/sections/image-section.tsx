@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 
-interface ImageSectionProps {
+// Export the interface
+export interface ImageSectionProps {
   images: {
     src: string;
     alt: string;
@@ -18,7 +19,7 @@ export default function ImageSection({
   caption, 
   fullWidth = false,
   layout = 'grid',
-  columns = 3 
+  columns = 3,
 }: ImageSectionProps) {
   if (!images || images.length === 0) {
     return null;
@@ -32,10 +33,14 @@ export default function ImageSection({
   };
 
   if (layout === 'single' && images.length > 0) {
-    // Single large image layout
+    // Determine container classes: Use aspect ratio
+    const singleLayoutClasses = fullWidth 
+        ? 'aspect-[2.4/1]' // Hero aspect ratio
+        : 'aspect-[2/1]'; // Non-fullWidth single image aspect ratio (approx 1312:640)
+
     return (
-      <section className={`py-4 md:py-6 ${fullWidth ? 'w-full' : 'px-8 md:px-16'}`}>
-        <div className="relative aspect-[16/9] w-full">
+      <section className={`${fullWidth ? 'w-full' : ''}`}>
+        <div className={`relative ${singleLayoutClasses} w-full`}>
           <Image
             src={images[0].src}
             alt={images[0].alt || 'Featured image'}
@@ -51,7 +56,7 @@ export default function ImageSection({
 
   // Grid layout
   return (
-    <section className={`py-4 md:py-6 ${fullWidth ? 'w-full' : 'px-8 md:px-16'}`}>
+    <section className={`py-4 md:py-6 ${fullWidth ? 'w-full' : ''}`}>
       <div className={`grid grid-cols-1 ${gridCols[columns]} gap-6 md:gap-8`}>
         {images.map((image, index) => (
           <div key={index} className="relative aspect-square">

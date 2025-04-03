@@ -1,34 +1,74 @@
-import ProjectCard from "@/components/project-card"
-import Layout from "@/components/layout"
+import ProductGridSection from "@/components/sections/product-grid-section";
+import Layout from "@/components/layout";
+import TextSection from "@/components/sections/text-section";
 
-export default function StudioPage() {
-  const projects = [
-    { title: "GONSIORI FLAT, TALLINN", slug: "gonsiori-flat", imageSrc: "/placeholder.svg?height=600&width=600" },
-    { title: "KUNDERI FLAT, TALLINN", slug: "kunderi-flat", imageSrc: "/placeholder.svg?height=600&width=600" },
-    { title: "CIAO PACKAGE DESIGN", slug: "ciao-package-design", imageSrc: "/placeholder.svg?height=600&width=600" },
-    { title: "CAFÉ in RUMMU", slug: "cafe-rummu", imageSrc: "/placeholder.svg?height=600&width=600" },
-    { title: "FROST SPA, PÄRNU", slug: "frost-spa", imageSrc: "/placeholder.svg?height=600&width=600" },
-  ]
+// Mock data - replace with actual data fetching later (e.g., from Sanity)
+const studio = [
+  { title: "Gonsiori Flat Staging", slug: "gonsiori-flat", imageSrc: "/images/gonsiori-flat.png" },
+  { title: "Kunderi Flat Renovation", slug: "kunderi-flat", imageSrc: "/images/kunderi-flati.png" },
+  { title: "Ciao Package Design", slug: "ciao-package", imageSrc: "/images/ciao-package.png" },
+  { title: "Cafe Rummu Interior", slug: "cafe-rummu", imageSrc: "/images/cafe-rummu.png" },
+  { title: "Frost Spa Concept", slug: "frost-spa", imageSrc: "/images/frost-spa.png" },
+  // Add more studio as needed
+].map(studio => ({
+  ...studio,
+  basePath: "/studio", // Adjusted basePath from /studio
+  viewDetailsText: "Read More",
+  linkClassName: "underline decoration-1 underline-offset-4"
+}));
 
+// Prepare data chunks for the sections
+const section1Stories = studio.slice(0, 2);
+const section2Stories = studio.slice(2, 4);
+const section3Stories = studio.slice(4, 5); // Only the 5th studio
+
+// Define the intro text again
+const introText = `FOUM Studio is an interior architecture studio by Anna-Grete Konsap and Kaarel Luht. Fueled by curiosity and a passion for innovative design, their portfolio ranges from private homes to cafes and package design. Approaching each project with fresh perspectives they blend creativity with client needs to push design boundaries.`
+
+export default function StudioPage() { // Renamed from StoriesPage
+  // In a real application, you would fetch page data (including the intro text section)
+  // from Sanity and render it using SectionRenderer, e.g.:
+  // const pageData = await getPageDataFromSanity('studio'); // Adjusted from 'studio'
+  // return <Layout><SectionRenderer sections={pageData.sections} /></Layout>;
+
+  // For now, just render the product grids within the Layout
   return (
     <Layout>
-      <div className="px-8 py-8">
-        <div className="mb-16">
-          <p className="text-lg mb-8 max-w-2xl">
-            FOUM Studio is an interior architecture studio by Anna-Grete Konsap and Kaarel Lüht. Fueled by curiosity and
-            a passion for innovative design, their portfolio ranges from private homes to cafes and package design.
-            Approaching each project with fresh perspectives they blend creativity with client needs to push design
-            boundaries.
-          </p>
-        </div>
+      {/* Apply slightly larger max-width wrapper AND padding */}
+      <div className="max-w-[88rem] mx-auto px-6 md:px-12">
+        {/* Render the intro text using layout variant */}
+        <TextSection 
+          text={introText} 
+          align="left"
+          layoutVariant="studioIntro"
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} title={project.title} imageSrc={project.imageSrc} slug={project.slug} />
-          ))}
+        {/* Product Grid Sections - Removed horizontal padding */}
+        {/* The main layout adds pt-40/pt-56, so maybe less padding needed here? */}
+        <div className="space-y-8 md:space-y-12 pt-8 md:pt-12 pb-8 md:pb-12"> {/* Removed px-6 md:px-12 */}
+          {section1Stories.length > 0 && (
+            <ProductGridSection 
+              products={section1Stories}
+              columns={2} 
+            />
+          )}
+
+          {section2Stories.length > 0 && (
+            <ProductGridSection 
+              products={section2Stories}
+              columns={2} 
+            />
+          )}
+
+          {section3Stories.length > 0 && (
+            <ProductGridSection 
+              products={section3Stories}
+              columns={2}
+            />
+          )}
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
