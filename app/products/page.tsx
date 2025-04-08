@@ -1,25 +1,21 @@
 import Layout from "@/components/layout"
-import ProductCard from "@/components/product-card"
+import ProductGridSection from "@/components/sections/product-grid-section"
 
 export default function ProductsPage() {
   const products = [
-    { title: "SIDEBOARD MAI", slug: "sideboard-mai", imageSrc: "/placeholder.svg?height=400&width=400" },
-    { title: "SHELF F20", slug: "shelf-f20", imageSrc: "/placeholder.svg?height=400&width=400" },
-    { title: "CANDLE HOLDER", slug: "candle-holder", imageSrc: "/placeholder.svg?height=400&width=400" },
-    { title: "MIRROR", slug: "mirror", imageSrc: "/placeholder.svg?height=400&width=400" },
-    { title: "HEADBOARD", slug: "headboard", imageSrc: "/placeholder.svg?height=400&width=400" },
-    { title: "BED", slug: "bed", imageSrc: "/placeholder.svg?height=400&width=400" },
+    { title: "SIDEBOARD MAI", slug: "sideboard-mai", imageSrc: "/images/shelf-60.jpg" },
+    { title: "SHELF F20", slug: "shelf-f20", imageSrc: "/images/shelf-120.jpg" },
+    { title: "CANDLE HOLDER", slug: "candle-holder", imageSrc: "/images/shelf-60.jpg" },
+    { title: "MIRROR", slug: "mirror", imageSrc: "/images/shelf-120.jpg" },
+    { title: "HEADBOARD", slug: "headboard", imageSrc: "/images/shelf-60.jpg" },
+    { title: "BED", slug: "bed", imageSrc: "/images/shelf-120.jpg" },
   ]
 
   return (
     <Layout>
       <div className="max-w-[88rem] mx-auto">
         <div className="px-6 md:px-12 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <ProductCard key={product.slug} title={product.title} imageSrc={product.imageSrc} slug={product.slug} />
-            ))}
-          </div>
+          <ProductGridSection products={products} columns={2} />
         </div>
       </div>
     </Layout>

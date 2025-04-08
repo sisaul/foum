@@ -5,12 +5,14 @@ export interface TitleSectionProps {
   title: string
   centered?: boolean
   size?: 'small' | 'medium' | 'large'
+  date?: string
 }
 
 export default function TitleSection({ 
   title, 
   centered = false,
-  size = 'medium'
+  size = 'medium',
+  date
 }: TitleSectionProps) {
   const sizeClasses = {
     small: "text-2xl md:text-3xl",

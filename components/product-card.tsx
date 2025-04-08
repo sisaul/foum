@@ -36,7 +36,7 @@ export default function ProductCard({
         <h3 className="text-base uppercase font-medium leading-tight">{title}</h3>
         <Link 
           href={`${basePath}/${slug}`}
-          className={`text-base uppercase font-medium hover:opacity-70 transition-opacity leading-tight ${linkClassName}`}
+          className={`text-base uppercase font-medium hover:opacity-70 transition-opacity leading-tight underline ${linkClassName}`}
         >
           {viewDetailsText}
         </Link>

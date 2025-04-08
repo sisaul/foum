@@ -15,8 +15,8 @@ export default function Home() {
   }
 
   const featuredProducts = [
-    { title: "SHELF 60", imageSrc: "/images/shelf-60.jpg", slug: "shelf-60" },
-    { title: "SHELF 120", imageSrc: "/images/shelf-120.jpg", slug: "shelf-120" }
+    { title: "SHELF 60", slug: "shelf-60", imageSrc: "/images/shelf-60.jpg" },
+    { title: "SHELF 120", slug: "shelf-120", imageSrc: "/images/shelf-120.jpg" },
   ]
 
   const kitchenStory = {
