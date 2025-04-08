@@ -9,7 +9,7 @@ export default function ContactPage() {
         <div className="px-6 md:px-12 py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             <div className="relative h-[400px]">
-              <Image src="/placeholder.svg?height=800&width=800" alt="FOUM showroom" fill className="object-cover" />
+              <Image src="/images/showroom.png" alt="FOUM showroom" fill className="object-cover" />
             </div>
             <div>
               <h1 className="text-4xl font-bold mb-6">OUR SHOWROOM</h1>

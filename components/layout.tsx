@@ -25,15 +25,17 @@ export default function Layout({ children }: LayoutProps) {
   let bgColor = "bg-[#e9e4dd]"    // Default light background
   let textColor = "text-black"      // Default dark text
   let darkMode = false          // Flag for component props
+  let contactBgColor = ""       // Default: inherit from parent
 
   if (pathname?.startsWith('/studio')) {
     bgColor = "bg-[#1b1919]"    // Studio dark bg
     textColor = "text-white"      // Studio light text
     darkMode = true
   } else if (pathname?.startsWith('/stories')) {
-    bgColor = "bg-[#1B1919]"    // Stories dark bg (#1B1919)
-    textColor = "text-[#E9E4DD]" // Stories light text (#E9E4DD)
-    darkMode = true
+    bgColor = "bg-[#E2D0A2]"    // Stories gold bg
+    textColor = "text-[#1E1E1E]" // Stories dark text
+    contactBgColor = "bg-[#E2D0A2]" // Set contact form to gold background
+    darkMode = false
   }
 
   return (
@@ -42,7 +44,9 @@ export default function Layout({ children }: LayoutProps) {
       <main className={`flex-grow ${!isHomePage ? 'pt-40 md:pt-56' : ''}`}>
         {children}
       </main>
-      <ContactForm darkMode={darkMode} />
+      <div className={contactBgColor}>
+        <ContactForm darkMode={darkMode} />
+      </div>
       <NewsletterBanner />
     </div>
   )

@@ -30,12 +30,12 @@ export default function ProductPage({ params }: ProductPageProps) {
       { color: "#7D3C3C", name: "Burgundy" },
     ],
     sizes: ["F20", "F40", "F60", "F80"],
-    image: "/placeholder.svg?height=600&width=300",
+    image: "/images/shelf-60.jpg",
     relatedProducts: [
-      { title: "SILVER WARE", slug: "silver-ware", imageSrc: "/placeholder.svg?height=400&width=400" },
-      { title: "GONSIORI FLAT, TALLINN", slug: "gonsiori-flat", imageSrc: "/placeholder.svg?height=400&width=400" },
-      { title: "SHELF MINI", slug: "shelf-mini", imageSrc: "/placeholder.svg?height=400&width=400" },
-      { title: "CUSTOM MADE VASE", slug: "custom-made-vase", imageSrc: "/placeholder.svg?height=400&width=400" },
+      { title: "SILVER WARE", slug: "silver-ware", imageSrc: "/images/kunderi-flat/milan-design-week.png" },
+      { title: "GONSIORI FLAT, TALLINN", slug: "gonsiori-flat", imageSrc: "/images/kunderi-flat/gonsiori-flat.png" },
+      { title: "SHELF MINI", slug: "shelf-mini", imageSrc: "/images/kunderi-flat/shelf-mini.png" },
+      { title: "CUSTOM MADE VASE", slug: "custom-made-vase", imageSrc: "/images/kunderi-flat/custom-made-vase.png" },
     ],
   }
 
@@ -47,7 +47,7 @@ export default function ProductPage({ params }: ProductPageProps) {
             <div className="sticky top-8">
               <div className="relative w-[300px] h-[600px] mx-auto">
                 <Image
-                  src={productData.image || "/placeholder.svg"}
+                  src={productData.image || "/images/shelf-60.jpg"}
                   alt={productData.title}
                   fill
                   className="object-contain"

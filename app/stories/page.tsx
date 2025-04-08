@@ -1,33 +1,69 @@
-import ProjectCard from "@/components/project-card"
 import Layout from "@/components/layout"
+import ProductGridSection from "@/components/sections/product-grid-section"
 
-export default function StoriesPage() { // Renamed from StudioPage
-  const projects = [
-    { title: "GONSIORI FLAT, TALLINN", slug: "gonsiori-flat", imageSrc: "/placeholder.svg?height=600&width=600" },
-    { title: "KUNDERI FLAT, TALLINN", slug: "kunderi-flat", imageSrc: "/placeholder.svg?height=600&width=600" },
-    { title: "CIAO PACKAGE DESIGN", slug: "ciao-package-design", imageSrc: "/placeholder.svg?height=600&width=600" },
-    { title: "CAFÉ in RUMMU", slug: "cafe-rummu", imageSrc: "/placeholder.svg?height=600&width=600" },
-    { title: "FROST SPA, PÄRNU", slug: "frost-spa", imageSrc: "/placeholder.svg?height=600&width=600" },
-  ]
+export default function StoriesPage() {
+  // Mock data for stories
+  const storiesData = [
+    { 
+      title: "KITCHEN INSPIRATION", 
+      slug: "kitchen-inspiration", 
+      imageSrc: "/images/stories/stories-1.png",
+      viewDetailsText: "READ MORE", 
+      linkClassName: "underline decoration-1 underline-offset-4" 
+    },
+    { 
+      title: "MIXING MEDIUMS IN BEDROOM", 
+      slug: "mixing-mediums-in-bedroom", 
+      imageSrc: "/images/stories/stories-2.png",
+      viewDetailsText: "READ MORE", 
+      linkClassName: "underline decoration-1 underline-offset-4" 
+    },
+    { 
+      title: "FROM FINE DINING TO HOME COOKING", 
+      slug: "fine-dining-to-home-cooking", 
+      imageSrc: "/images/stories/stories-3.png",
+      viewDetailsText: "READ MORE", 
+      linkClassName: "underline decoration-1 underline-offset-4" 
+    },
+    { 
+      title: "STAYCATION IS HERE TO STAY", 
+      slug: "staycation", 
+      imageSrc: "/images/stories/stories-4.png",
+      viewDetailsText: "READ MORE", 
+      linkClassName: "underline decoration-1 underline-offset-4" 
+    }
+  ];
+
+  // Prepare story chunks for the grid sections
+  const section1Stories = storiesData.slice(0, 2);
+  const section2Stories = storiesData.slice(2, 4);
 
   return (
     <Layout>
-      <div className="max-w-[88rem] mx-auto">
-        <div className="px-6 md:px-12 py-8">
-          <div className="mb-16">
-            <p className="text-lg mb-8 max-w-2xl">
-              FOUM Studio is an interior architecture studio by Anna-Grete Konsap and Kaarel Lüht. Fueled by curiosity and
-              a passion for innovative design, their portfolio ranges from private homes to cafes and package design.
-              Approaching each project with fresh perspectives they blend creativity with client needs to push design
-              boundaries.
-            </p>
-          </div>
+      <div className="max-w-[88rem] mx-auto px-6 md:px-12">
+        {/* Stories grid sections */}
+        <div className="space-y-16 md:space-y-24 py-12 md:py-16">
+          {/* First row */}
+          {section1Stories.length > 0 && (
+            <ProductGridSection 
+              products={section1Stories.map(story => ({
+                ...story,
+                basePath: "/stories",
+              }))}
+              columns={2}
+            />
+          )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} title={project.title} imageSrc={project.imageSrc} slug={project.slug} />
-            ))}
-          </div>
+          {/* Second row */}
+          {section2Stories.length > 0 && (
+            <ProductGridSection 
+              products={section2Stories.map(story => ({
+                ...story,
+                basePath: "/stories",
+              }))}
+              columns={2}
+            />
+          )}
         </div>
       </div>
     </Layout>

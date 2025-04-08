@@ -223,7 +223,8 @@ async function getProjectData(slug: string): Promise<Project | undefined> {
 }
 
 export default async function Page({ params }: PageProps) {
-  const slug = params.slug;
+  // Wait for params to be available before accessing slug
+  const { slug } = params;
   const project = await getProjectData(slug);
 
   if (!project) {

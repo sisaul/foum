@@ -19,7 +19,13 @@ export default function Header({ navItems, darkMode = false }: HeaderProps) {
   const textColor = darkMode ? "text-white" : "text-black"
   const [isScrolled, setIsScrolled] = useState(false)
 
-  const scrolledBgColor = darkMode ? "bg-[#1b1919]/95" : "bg-[#e9e4dd]/95"
+  let scrolledBgColor = "bg-[#e9e4dd]/95" // Default color
+  
+  if (pathname?.startsWith('/studio')) {
+    scrolledBgColor = "bg-[#1b1919]/95" // Studio dark bg
+  } else if (pathname?.startsWith('/stories')) {
+    scrolledBgColor = "bg-[#E2D0A2]/95" // Stories gold bg
+  }
 
   useEffect(() => {
     const handleScroll = () => {
