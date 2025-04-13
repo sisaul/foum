@@ -48,8 +48,24 @@ export interface Story {
 // Project types
 export interface Section {
   _key: string;
-  _type: string;
-  [key: string]: unknown; // Additional fields based on section type - using unknown instead of any
+  _type: 'heroSection' | 'imageSection' | 'textSection' | 'imageCarousel' | 'productGridSection' | 'productTextSection' | 'projectPreviewSection' | 'featuredProductsSection';
+  title?: string;
+  text?: string;
+  images?: { src: string; alt: string; }[];
+  layout?: 'grid' | 'single';
+  fullWidth?: boolean;
+  size?: 'heading-1' | 'heading-2' | 'heading-3';
+  centered?: boolean;
+  align?: 'left' | 'center' | 'right';
+  maxWidth?: string;
+  titlePosition?: 'left' | 'right';
+  verticalAlign?: 'start' | 'center' | 'end';
+  columns?: 2 | 3 | 4;
+  gap?: string;
+  products?: { title: string; slug: string; imageSrc: string; basePath?: string }[];
+  basePath?: string;
+  hideViewDetailsLink?: boolean;
+  date?: string;
 }
 
 export interface Project {

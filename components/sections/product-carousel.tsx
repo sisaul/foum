@@ -1,70 +1,118 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
+import { useState, useEffect, useRef } from "react"
+import ProductGridSection, { ProductGridProps } from "./product-grid-section"
 
-interface Product {
-  title: string
-  slug: string
-  imageSrc: string
+export interface ProductCarouselProps extends ProductGridProps {
+  title?: string
+  darkMode?: boolean
 }
 
-interface ProductCarouselProps {
-  products: Product[]
-}
-
-export default function ProductCarousel({ products }: ProductCarouselProps) {
-  const [isHovered, setIsHovered] = useState(false)
+export default function ProductCarousel({ 
+  title = "FEATURED PRODUCTS",
+  darkMode = false,
+  products = [],
+  ...productGridProps
+}: ProductCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [showArrows, setShowArrows] = useState(false)
+  const [imageHeight, setImageHeight] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const textColor = darkMode ? "text-white" : "text-foum-black"
+  const itemsPerPage = productGridProps.columns || 4
+  
+  useEffect(() => {
+    if (products.length > 0) {
+      setCurrentIndex(prev => Math.min(prev, products.length - 1));
+    }
+  }, [products]);
 
+  useEffect(() => {
+    const updateImageHeight = () => {
+      if (containerRef.current) {
+        const imageContainer = containerRef.current.querySelector('.aspect-square');
+        if (imageContainer) {
+          setImageHeight(imageContainer.clientHeight);
+        }
+      }
+    };
+
+    updateImageHeight();
+    window.addEventListener('resize', updateImageHeight);
+    return () => window.removeEventListener('resize', updateImageHeight);
+  }, []);
+
+  const shouldShowArrows = products.length > itemsPerPage
+  
+  const getVisibleProducts = () => {
+    if (products.length <= itemsPerPage) {
+      return products;
+    }
+    
+    const wrappedProducts = [...products];
+    const result = [];
+    for (let i = 0; i < itemsPerPage; i++) {
+      const index = (currentIndex + i) % products.length;
+      result.push(wrappedProducts[index]);
+    }
+    
+    return result;
+  };
+  
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 4 >= products.length ? 0 : prevIndex + 4))
+    setCurrentIndex(prev => (prev + 1) % products.length);
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 4 < 0 ? Math.max(products.length - 4, 0) : prevIndex - 4))
+    setCurrentIndex(prev => (prev - 1 + products.length) % products.length);
   }
 
+  const visibleProducts = getVisibleProducts();
+
   return (
-    <div className="relative mb-16" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      <h2 className="heading-2 mb-8 border-b border-black pb-2">DISCOVER MORE</h2>
+    <section className="w-full">
+      <div className="max-w-[88rem] mx-auto">
+        <div className="section-spacing">
+          <div className={`w-full border-t-4 ${darkMode ? "border-[#E9E4DD]" : "border-[#000000]"} mb-4`}></div>
+          <h2 className={`caption mb-8 ${textColor}`}>{title}</h2>
+          
+          <div 
+            ref={containerRef}
+            className="relative"
+            onMouseEnter={() => setShowArrows(true)}
+            onMouseLeave={() => setShowArrows(false)}
+          >
+            <ProductGridSection 
+              {...productGridProps} 
+              products={visibleProducts}
+              columns={itemsPerPage}
+            />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {products.slice(currentIndex, currentIndex + 4).map((product) => (
-          <Link key={product.slug} href={`/products/${product.slug}`} className="block">
-            <div className="relative w-full aspect-square mb-2 bg-white">
-              <Image 
-                src={product.imageSrc || "/placeholder.svg"} 
-                alt={product.title} 
-                fill 
-                className="object-cover" 
-              />
-            </div>
-            <h3 className="heading-3">{product.title}</h3>
-          </Link>
-        ))}
+            {shouldShowArrows && showArrows && (
+              <>
+                <button
+                  type="button"
+                  onClick={prevSlide}
+                  style={{ top: `${imageHeight / 2}px` }}
+                  className="absolute left-2 transform -translate-y-1/2 pointer-events-auto text-white w-12 h-12 flex items-center justify-center text-3xl font-bold hover:text-gray-200 transition-all z-10 drop-shadow-lg"
+                  aria-label="Previous slide"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={nextSlide}
+                  style={{ top: `${imageHeight / 2}px` }}
+                  className="absolute right-2 transform -translate-y-1/2 pointer-events-auto text-white w-12 h-12 flex items-center justify-center text-3xl font-bold hover:text-gray-200 transition-all z-10 drop-shadow-lg"
+                  aria-label="Next slide"
+                >
+                  →
+                </button>
+              </>
+            )}
+          </div>
+        </div>
       </div>
-
-      {isHovered && products.length > 4 && (
-        <>
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-black text-white p-2 rounded-full"
-            aria-label="Previous slide"
-          >
-            ←
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-black text-white p-2 rounded-full"
-            aria-label="Next slide"
-          >
-            →
-          </button>
-        </>
-      )}
-    </div>
+    </section>
   )
-}
-
+} 

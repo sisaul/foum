@@ -1,10 +1,10 @@
 import Layout from "@/components/layout";
 import ImageSection from "@/components/sections/image-section";
+import ImageGridSection from "@/components/sections/image-grid-section";
 import TextSection from "@/components/sections/text-section";
 import TitleSection from "@/components/sections/title-section";
-import ImageGridSection from "@/components/sections/image-grid-section";
 import TitleTextLayoutSection from "@/components/sections/title-text-layout-section";
-import FeaturedProductsHeaderSection from "@/components/sections/featured-products-header-section";
+import ProductCarousel from "@/components/sections/product-carousel"
 
 // Define basic types
 type Section = {
@@ -36,9 +36,10 @@ interface Story {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>,
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 // Mock data for stories
@@ -110,7 +111,11 @@ const storiesData: Story[] = [
           { title: 'MILAN DESIGN WEEK OVERVIEW', slug: 'prod-1', imageSrc: '/images/kunderi-flat/milan-design-week.png' },
           { title: 'GONSIORI FLAT, TALLINN', slug: 'prod-2', imageSrc: '/images/kunderi-flat/gonsiori-flat.png' },
           { title: 'SHELF MINI', slug: 'prod-3', imageSrc: '/images/kunderi-flat/shelf-mini.png' },
-          { title: 'CUSTOM MADE VASE', slug: 'prod-4', imageSrc: '/images/kunderi-flat/custom-made-vase.png' }
+          { title: 'CUSTOM MADE VASE', slug: 'prod-4', imageSrc: '/images/kunderi-flat/custom-made-vase.png' },
+          { title: 'STORAGE UNIT', slug: 'prod-5', imageSrc: '/images/stories/kitchen-1.png' },
+          { title: 'WOODEN CHAIR', slug: 'prod-6', imageSrc: '/images/stories/kitchen-2.png' },
+          { title: 'COFFEE TABLE', slug: 'prod-7', imageSrc: '/images/stories/kitchen-3.png' },
+          { title: 'SIDE TABLE', slug: 'prod-8', imageSrc: '/images/stories/kitchen-4.png' },
         ]
       }
     ]
@@ -124,7 +129,7 @@ async function getStoryData(slug: string): Promise<Story | undefined> {
 
 export default async function Page({ params }: PageProps) {
   // Wait for params to be available before accessing slug
-  const { slug } = params;
+  const { slug } = await params;
   const story = await getStoryData(slug);
 
   if (!story) {
@@ -165,7 +170,6 @@ export default async function Page({ params }: PageProps) {
             <div className="flex justify-between items-baseline">
               <TitleSection 
                 title={titleSection.title || ''}
-                size={titleSection.size}
                 centered={titleSection.centered}
               />
               {story.date && (
@@ -194,7 +198,6 @@ export default async function Page({ params }: PageProps) {
                   <TitleSection 
                     key={_key} 
                     title={section.title || ''}
-                    size={section.size}
                     centered={section.centered}
                   />
                 );
@@ -209,7 +212,6 @@ export default async function Page({ params }: PageProps) {
                     maxWidth={section.maxWidth}
                     titlePosition={section.titlePosition}
                     verticalAlign={section.verticalAlign}
-                    titleSize={section.size}
                   />
                 );
               
@@ -236,7 +238,7 @@ export default async function Page({ params }: PageProps) {
               
               case 'productGridSection':
                 return section.products && (
-                  <FeaturedProductsHeaderSection 
+                  <ProductCarousel 
                     key={_key}
                     title="DISCOVER MORE"
                     products={section.products}

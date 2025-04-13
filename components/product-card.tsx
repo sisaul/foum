@@ -35,11 +35,11 @@ export default function ProductCard({
         </div>
       </Link>
       <div className="pt-4 flex justify-between items-start">
-        <h3 className="caption leading-tight font-bold">{title}</h3>
+        <h3 className="caption">{title}</h3>
         {viewDetailsText && (
           <Link 
             href={`${basePath}/${slug}`}
-            className={`caption hover:opacity-70 transition-opacity leading-tight underline underline-offset-4 decoration-1 ${linkClassName}`}
+            className={`caption hover:opacity-70 transition-opacity underline ${linkClassName}`}
           >
             {viewDetailsText}
           </Link>

@@ -10,7 +10,6 @@ export interface TitleTextLayoutSectionProps {
   titlePosition?: 'left' | 'right';
   verticalAlign?: 'start' | 'center' | 'end';
   maxWidth?: string;
-  titleSize?: 'heading-1' | 'heading-2' | 'heading-3';
 }
 
 export default function TitleTextLayoutSection({
@@ -20,7 +19,6 @@ export default function TitleTextLayoutSection({
   titlePosition = 'left',
   verticalAlign = 'start',
   maxWidth,
-  titleSize,
 }: TitleTextLayoutSectionProps) {
   const alignmentClass = {
     start: 'items-start',
@@ -36,7 +34,6 @@ export default function TitleTextLayoutSection({
         <TitleSection 
           title={title} 
           centered={false}
-          size={titleSize}
         />
       </div>
 
@@ -47,6 +44,7 @@ export default function TitleTextLayoutSection({
           align={textAlign}
           maxWidth={maxWidth}
           paddingY="py-0" // Remove internal padding from TextSection
+          layoutVariant="titleText"
         />
       </div>
     </div>

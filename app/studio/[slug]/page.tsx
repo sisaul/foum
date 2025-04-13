@@ -1,12 +1,12 @@
 // New file
 import Layout from "@/components/layout";
 import ImageSection from "@/components/sections/image-section";
+import ImageGridSection from "@/components/sections/image-grid-section";
 import TextSection from "@/components/sections/text-section";
 import TitleSection from "@/components/sections/title-section";
-import ImageGridSection from "@/components/sections/image-grid-section";
 import TitleTextLayoutSection from "@/components/sections/title-text-layout-section";
 import SingleImageCarousel from "@/components/sections/single-image-carousel";
-import FeaturedProductsHeaderSection from "@/components/sections/featured-products-header-section";
+import ProductCarousel from "@/components/sections/product-carousel"
 
 // Define basic types
 type Section = {
@@ -36,9 +36,10 @@ interface Project {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>,
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 // Mock data for projects
@@ -123,7 +124,11 @@ const projectsData: Project[] = [
           { title: 'MILAN DESIGN WEEK OVERVIEW', slug: 'prod-1', imageSrc: '/images/kunderi-flat/milan-design-week.png' },
           { title: 'GONSIORI FLAT, TALLINN', slug: 'prod-2', imageSrc: '/images/kunderi-flat/gonsiori-flat.png' },
           { title: 'SHELF MINI', slug: 'prod-3', imageSrc: '/images/kunderi-flat/shelf-mini.png' },
-          { title: 'CUSTOM MADE VASE', slug: 'prod-4', imageSrc: '/images/kunderi-flat/custom-made-vase.png' }
+          { title: 'CUSTOM MADE VASE', slug: 'prod-4', imageSrc: '/images/kunderi-flat/custom-made-vase.png' },
+          { title: 'STORAGE UNIT', slug: 'prod-5', imageSrc: '/images/rummu-cafe/ambience-1.png' },
+          { title: 'WOODEN CHAIR', slug: 'prod-6', imageSrc: '/images/rummu-cafe/ambience-2.png' },
+          { title: 'COFFEE TABLE', slug: 'prod-7', imageSrc: '/images/rummu-cafe/details-1.png' },
+          { title: 'SIDE TABLE', slug: 'prod-8', imageSrc: '/images/rummu-cafe/details-2.png' },
         ]
       }
     ]
@@ -224,7 +229,7 @@ async function getProjectData(slug: string): Promise<Project | undefined> {
 
 export default async function Page({ params }: PageProps) {
   // Wait for params to be available before accessing slug
-  const { slug } = params;
+  const { slug } = await params;
   const project = await getProjectData(slug);
 
   if (!project) {
@@ -264,8 +269,7 @@ export default async function Page({ params }: PageProps) {
           {titleSection?.title && (
             <div className="flex justify-between items-baseline">
               <TitleSection 
-                title={titleSection.title}
-                size={titleSection.size}
+                title={titleSection.title || ''}
                 centered={titleSection.centered}
               />
               <span className="text-sm font-mono pl-4">{slug === 'kunderi-flat' ? '2024' : '2023'}</span>
@@ -292,7 +296,6 @@ export default async function Page({ params }: PageProps) {
                   <TitleSection 
                     key={_key} 
                     title={section.title || ''}
-                    size={section.size}
                     centered={section.centered}
                   />
                 );
@@ -307,7 +310,6 @@ export default async function Page({ params }: PageProps) {
                     maxWidth={section.maxWidth}
                     titlePosition={section.titlePosition}
                     verticalAlign={section.verticalAlign}
-                    titleSize={section.size}
                   />
                 );
               
@@ -342,9 +344,9 @@ export default async function Page({ params }: PageProps) {
               
               case 'productGridSection':
                 return section.products && (
-                  <FeaturedProductsHeaderSection 
+                  <ProductCarousel 
                     key={_key}
-                    title={slug === 'kunderi-flat' ? 'FEATURED PRODUCTS' : 'DISCOVER MORE'}
+                    title="DISCOVER MORE"
                     products={section.products}
                     columns={section.columns as 2 | 3 | 4}
                     basePath={section.basePath}

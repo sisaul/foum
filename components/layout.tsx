@@ -40,12 +40,12 @@ export default function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <div className={`min-h-screen ${bgColor} ${textColor}`}>
+    <div className={`min-h-screen ${bgColor} ${textColor} relative`}>
       <Header navItems={navItems} darkMode={darkMode} />
-      <main className={`flex-grow ${!isHomePage ? 'pt-40 md:pt-56' : ''}`}>
+      <main className={`flex-grow relative ${!isHomePage ? 'pt-40 md:pt-56' : ''}`}>
         {children}
       </main>
-      <div className={contactBgColor}>
+      <div className={`relative z-[998] ${contactBgColor}`}>
         <ContactForm darkMode={darkMode} />
       </div>
       <NewsletterBanner />

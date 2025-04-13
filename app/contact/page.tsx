@@ -10,8 +10,8 @@ export default function ContactPage() {
         title: "ESTONIAN DESIGN HOUSE",
         content: (
           <>
-            <p className="body-regular">Pärnu mnt 6, Tallinn</p>
-            <p className="body-regular">Open Mon-Fri 10-18, Sat 10-16</p>
+            <p className="small">Pärnu mnt 6, Tallinn</p>
+            <p className="small">Open Mon-Fri 10-18, Sat 10-16</p>
           </>
         )
       },
@@ -19,8 +19,8 @@ export default function ContactPage() {
         title: "HELSINKI FURNITURE SPACE",
         content: (
           <>
-            <p className="body-regular">Aleksanterinkatu 36, Helsinki</p>
-            <p className="body-regular">Open Mon-Fri 10-18, Sat 10-16</p>
+            <p className="small">Aleksanterinkatu 36, Helsinki</p>
+            <p className="small">Open Mon-Fri 10-18, Sat 10-16</p>
           </>
         )
       }
@@ -36,13 +36,13 @@ export default function ContactPage() {
               <Image src="/images/showroom.png" alt="FOUM showroom" fill className="object-cover" />
             </div>
             <div>
-              <h1 className="heading-2 mb-8">OUR SHOWROOM</h1>
-              <p className="body-large mb-16">
+              <h1 className="title mb-8">OUR SHOWROOM</h1>
+              <p className="body mb-16">
                 Give us a visit in Krulli Creative District, Kopli 70A, Tallinn. Our showroom is on the third floor.
                 Please book an appointment ahead.
               </p>
 
-              <p className="font-medium text-xl mb-8">BOOK AN APPOINTMENT:</p>
+              <p className="caption mb-8">BOOK AN APPOINTMENT:</p>
               <div className="flex flex-col sm:flex-row gap-4 mb-16">
                 <a href="tel:+37253420141" className="bg-foum-black text-white px-8 py-3 rounded-full">
                   +372 5342 0141

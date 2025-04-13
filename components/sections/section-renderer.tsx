@@ -6,7 +6,7 @@ import ImageCarousel from './image-carousel';
 import ProductGridSection from './product-grid-section';
 import ProductTextSection from './product-text-section';
 import ProjectPreviewSection from './project-preview-section';
-import FeaturedProductsSection from './featured-products-section';
+import ProductCarousel from './product-carousel';
 
 interface SectionRendererProps {
   sections: Section[];
@@ -35,8 +35,7 @@ export default function SectionRenderer({ sections }: SectionRendererProps) {
               // @ts-expect-error - Section types would be properly defined in a real app
               return <ImageSection key={_key} {...section} />;
             case 'textSection':
-              // @ts-expect-error - Section types would be properly defined in a real app
-              return <TextSection key={_key} {...section} />;
+              return <TextSection key={_key} text={section.text} align={section.align} maxWidth={section.maxWidth} />;
             case 'imageCarousel':
               // @ts-expect-error - Section types would be properly defined in a real app
               return <ImageCarousel key={_key} {...section} />;
@@ -50,8 +49,15 @@ export default function SectionRenderer({ sections }: SectionRendererProps) {
               // @ts-expect-error - Section types would be properly defined in a real app
               return <ProjectPreviewSection key={_key} {...section} />;
             case 'featuredProductsSection':
-              // @ts-expect-error - Section types would be properly defined in a real app
-              return <FeaturedProductsSection key={_key} {...section} />;
+              return <ProductCarousel 
+                key={_key} 
+                title="DISCOVER MORE" 
+                products={section.products || []} 
+                columns={section.columns} 
+                basePath={section.basePath}
+                hideViewDetailsLink={section.hideViewDetailsLink}
+                darkMode={false}
+              />;
             default:
               console.warn(`Section type not supported: ${_type}`);
               return null;

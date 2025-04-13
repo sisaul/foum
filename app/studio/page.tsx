@@ -34,17 +34,16 @@ export default function StudioPage() { // Renamed from StoriesPage
   // For now, just render the product grids within the Layout
   return (
     <Layout>
-      {/* Apply slightly larger max-width wrapper AND padding */}
       <div className="max-w-[88rem] mx-auto container-padding">
-        {/* Render the intro text using layout variant */}
         <TextSection 
           text={introText} 
           align="left"
           layoutVariant="studioIntro"
+          paddingY="pb-0" // Remove bottom padding from text section
         />
 
-        {/* Product Grid Sections - Use section-spacing for consistent padding */}
-        <div className="space-y-8 md:space-y-12 section-spacing">
+        {/* Reduced top spacing by adjusting space-y and removing section-spacing */}
+        <div className="space-y-8 md:space-y-12 pt-16">
           {section1Stories.length > 0 && (
             <ProductGridSection 
               products={section1Stories}

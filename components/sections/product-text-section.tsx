@@ -14,13 +14,15 @@ interface ProductTextSectionProps {
     href: string
     text: string
   }
+  alignTop?: boolean
 }
 
 export default function ProductTextSection({ 
   image, 
   title, 
   description, 
-  link, 
+  link,
+  alignTop = false
 }: ProductTextSectionProps) {
   return (
     <section className="section-spacing">
@@ -33,18 +35,22 @@ export default function ProductTextSection({
             className="object-cover" 
           />
         </div>
-        <div className="flex flex-col justify-between h-full py-0">
-          <div className="leading-none">
-            <h2 className="title whitespace-pre-line">{title}</h2>
-          </div>
-          <div className="flex flex-col mt-auto pt-4 md:pt-6">
+        <div className={`flex flex-col ${alignTop ? '' : 'justify-between'} h-full py-0`}>
+          {title && (
+            <div className="leading-none">
+              <h2 className="title whitespace-pre-line">{title}</h2>
+            </div>
+          )}
+          <div className={`flex flex-col ${alignTop ? '' : 'mt-auto'} pt-4 md:pt-6`}>
             <p className="body mb-2 max-w-xl">{description}</p>
-            <Link 
-              href={link.href}
-              className="caption underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity"
-            >
-              {link.text}
-            </Link>
+            {link.href && link.text && (
+              <Link 
+                href={link.href}
+                className="caption hover:opacity-70 transition-opacity underline"
+              >
+                {link.text}
+              </Link>
+            )}
           </div>
         </div>
       </div>

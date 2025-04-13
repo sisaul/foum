@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 interface RelatedProductProps {
   title: string
@@ -8,7 +9,7 @@ interface RelatedProductProps {
 
 export default function RelatedProduct({ title, imageSrc, slug }: RelatedProductProps) {
   return (
-    <div className="mb-8">
+    <Link href={`/products/${slug}`} className="block mb-8">
       <div className="relative w-full aspect-square mb-2 bg-white">
         <Image
           src={imageSrc || "/placeholder.svg?height=400&width=400"}
@@ -18,7 +19,7 @@ export default function RelatedProduct({ title, imageSrc, slug }: RelatedProduct
         />
       </div>
       <h3 className="caption">{title}</h3>
-    </div>
+    </Link>
   )
 }
 

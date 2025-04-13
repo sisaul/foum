@@ -14,7 +14,7 @@ export interface TextSectionProps {
   maxWidth?: string; // e.g., 'max-w-4xl'
   paddingY?: string; // Add prop for vertical padding
   width?: string; // Add prop for explicit width - Keep for general cases
-  layoutVariant?: 'default' | 'studioIntro'; // Add layout variant prop
+  layoutVariant?: 'default' | 'studioIntro' | 'titleText'; // Add layout variant prop
 }
 
 export default function TextSection({ 
@@ -35,6 +35,7 @@ export default function TextSection({
   // Determine width class based on variant or explicit prop
   const widthClass = 
     layoutVariant === 'studioIntro' ? 'w-full md:w-2/3' :
+    layoutVariant === 'titleText' ? 'w-full md:w-4/5' :
     width;
 
   // Prioritize rich content if available, otherwise use simple text

@@ -69,6 +69,7 @@ export default function Home() {
           <TitleSection 
             title={studioDescription.title}
             centered={false}
+            size="small"
           />
         
           <TwoProductGrid products={featuredProducts} columns={2} />
