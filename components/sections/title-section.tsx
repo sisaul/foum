@@ -4,28 +4,23 @@
 export interface TitleSectionProps {
   title: string
   centered?: boolean
-  size?: 'small' | 'medium' | 'large'
   date?: string
+  size?: 'heading-1' | 'heading-2' | 'heading-3'
 }
 
 export default function TitleSection({ 
   title, 
   centered = false,
-  size = 'medium',
-  date
+  date,
+  size = 'heading-1'
 }: TitleSectionProps) {
-  const sizeClasses = {
-    small: "text-2xl md:text-3xl",
-    medium: "text-4xl md:text-5xl",
-    large: "text-5xl md:text-6xl"
-  }
-
   return (
     // Remove padding from the section itself
     <div className={`${centered ? 'text-center' : ''}`}>
-      <h2 className={`${sizeClasses[size]} font-bold uppercase leading-none tracking-tight`}>
+      <h2 className={`title uppercase leading-none tracking-tight ${size}`}>
         {title}
       </h2>
+      {date && <p className="mt-2 text-sm text-foum-black/70">{date}</p>}
     </div>
   )
 }

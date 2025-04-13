@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 
-interface ShowroomSectionProps {
+interface HeroSectionProps {
   image: {
     src: string
     alt: string
@@ -10,7 +10,7 @@ interface ShowroomSectionProps {
   title: string
 }
 
-export default function ShowroomSection({ image, title }: ShowroomSectionProps) {
+export default function HeroSection({ image, title }: HeroSectionProps) {
   return (
     <section>
       <div className="relative h-[80vh] md:h-[90vh]">
@@ -22,12 +22,11 @@ export default function ShowroomSection({ image, title }: ShowroomSectionProps) 
           priority 
         />
       </div>
-      <div className="px-8 md:px-16 py-4 border-t border-[#00000010]">
-        <h2 className="text-base uppercase tracking-wide font-medium whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
+      <div className="container-padding py-4 border-t border-foum-black/10">
+        <h2 className="caption whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
           {title}
         </h2>
       </div>
     </section>
   )
-}
-
+} 

@@ -31,17 +31,17 @@ export default function ProjectPreview({
           />
         </div>
         <div className="flex flex-col justify-end">
-          <h2 className="text-4xl md:text-5xl font-bold uppercase mb-3 leading-none tracking-tight">
+          <h2 className="heading-2 mb-3">
             {title}
           </h2>
           {description && (
-            <p className="text-base md:text-lg mb-3 font-light leading-tight">
+            <p className="body-large mb-3">
               {description}
             </p>
           )}
           <Link 
             href={`/studio/${slug}`} 
-            className="text-base uppercase underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity font-medium"
+            className="caption underline decoration-1 underline-offset-4 hover:opacity-70 transition-opacity"
           >
             {linkText}
           </Link>

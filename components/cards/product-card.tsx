@@ -19,7 +19,7 @@ export default function ProductCard({ title, imageSrc, slug }: ProductCardProps)
         />
       </div>
       <div className="flex justify-between items-center">
-        <h3 className="text-sm font-medium uppercase">{title}</h3>
+        <h3 className="heading-3">{title}</h3>
         <Link href={`/products/${slug}`} className="text-xs underline">
           VIEW DETAILS
         </Link>

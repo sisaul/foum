@@ -25,11 +25,11 @@ export default function BlogGrid({ posts }: BlogGridProps) {
           </Link>
           <div>
             <div className="flex justify-between items-start mb-2">
-              <h2 className="text-xl font-medium">{post.title}</h2>
-              {post.date && <span className="text-sm">{post.date}</span>}
+              <h2 className="heading-2">{post.title}</h2>
+              {post.date && <span className="caption">{post.date}</span>}
             </div>
             <p className="mb-4">{post.description}</p>
-            <Link href={`/stories/${post.slug}`} className="text-xs underline">
+            <Link href={`/stories/${post.slug}`} className="caption underline">
               READ MORE
             </Link>
           </div>

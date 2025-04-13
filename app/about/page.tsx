@@ -18,9 +18,9 @@ export default function AboutPage() {
   return (
     <Layout>
       <div className="max-w-[88rem] mx-auto">
-        <div className="px-6 md:px-12 pt-8 pb-16">
+        <div className="container-padding section-spacing">
           {/* Main intro grid with image and text side by side */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 standard-gap mb-20">
             {/* Founders image */}
             <div className="relative aspect-square">
               <Image 
@@ -33,12 +33,12 @@ export default function AboutPage() {
             
             {/* About text */}
             <div>
-              <p className="text-base leading-relaxed">
+              <p className="body-regular">
                 Founded in 2020 by Anna-Grete Konsap and Kaarel Lüht, Foum Studio emerged from their shared passion for 
                 furniture and spatial design. From prototyping with whatever was available on an art student&apos;s budget to 
                 launching a multidisciplinary design studio, they&apos;ve built a wealth of experience making things work on any scale.
               </p>
-              <p className="text-base leading-relaxed mt-4">
+              <p className="body-regular mt-4">
                 Their portfolio spans a broad spectrum – from product design, bespoke furniture, and home goods to 
                 intimate private interiors and public spaces. Combining interior architecture and tailored furniture, Foum 
                 by Foum Studio is a true reflection of their collaborative spirit.
@@ -47,12 +47,12 @@ export default function AboutPage() {
           </div>
           
           {/* Divider line */}
-          <div className="w-full h-[1px] bg-black mb-6"></div>
+          <div className="w-full h-[1px] bg-foum-black/10 mb-6"></div>
           
           {/* Recent Updates Section */}
           <div>
-            <h2 className="text-2xl font-medium mb-6">RECENT UPDATES</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <h2 className="heading-3 mb-6">RECENT UPDATES</h2>
+            <div className="grid grid-cols-1 md:grid-cols-4 standard-gap">
               {featuredProducts.map((product) => (
                 <div key={product.slug}>
                   <div className="relative aspect-square mb-3">
@@ -63,7 +63,7 @@ export default function AboutPage() {
                       className="object-cover"
                     />
                   </div>
-                  <p className="text-sm font-medium uppercase mb-1">{product.title}</p>
+                  <p className="caption mb-1">{product.title}</p>
                 </div>
               ))}
             </div>

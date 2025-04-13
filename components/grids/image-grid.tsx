@@ -38,7 +38,7 @@ export default function ImageGrid({ images, columns = 2, withTitles = true, with
                     className="object-cover" 
                   />
                 </div>
-                {withTitles && <h3 className="text-sm font-medium uppercase">{image.title}</h3>}
+                {withTitles && <h3 className="heading-3">{image.title}</h3>}
               </a>
             </Link>
           ) : (
@@ -52,7 +52,7 @@ export default function ImageGrid({ images, columns = 2, withTitles = true, with
                   className="object-cover" 
                 />
               </div>
-              {withTitles && <h3 className="text-sm font-medium uppercase">{image.title}</h3>}
+              {withTitles && <h3 className="heading-3">{image.title}</h3>}
             </>
           )}
         </div>

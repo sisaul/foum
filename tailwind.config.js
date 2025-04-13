@@ -38,8 +38,8 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         foum: {
-          cream: "#e9e4dd",
-          gold: "#ddc17f",
+          cream: "#E9E4DD",
+          gold: "#DDC17F",
           black: "#000000",
         },
       },

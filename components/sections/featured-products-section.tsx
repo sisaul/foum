@@ -13,7 +13,7 @@ export default function FeaturedProductsSection({
   return (
     <section className="w-full">
       {title && (
-        <h2 className="text-2xl uppercase font-bold mb-8 text-white">{title}</h2>
+        <h2 className="heading-3 mb-8 text-white">{title}</h2>
       )}
       
       {/* Product grid */}

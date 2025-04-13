@@ -1,8 +1,8 @@
 import Layout from "@/components/layout"
-import ShowroomSection from "@/components/sections/hero-section"
+import HeroSection from "@/components/sections/page-hero-section"
 import TwoProductGrid from "@/components/sections/product-grid-section"
 import TitleSection from "@/components/sections/title-section"
-import ProductTextGrid from "@/components/sections/product-text-section"
+import ProductTextSection from "@/components/sections/product-text-section"
 
 export default function Home() {
   // This data would come from Sanity in a real implementation
@@ -24,7 +24,7 @@ export default function Home() {
       src: "/images/kitchen-inspiration.jpg",
       alt: "Kitchen Inspiration"
     },
-    title: "KITCHEN INSPIRATION",
+    title: "KITCHEN\nINSPIRATION",
     description: "Pour yourself some coffee and read about latest trends in interior design world, that our founder Kaarel Luht encountered at Milan Design Week.",
     link: {
       href: "/stories/kitchen-inspiration",
@@ -41,7 +41,7 @@ export default function Home() {
       src: "/images/mixing-mediums.jpg",
       alt: "Mixing Mediums in Bedroom"
     },
-    title: "MIXING MEDIUMS IN BEDROOM",
+    title: "MIXING\nMEDIUMS IN\nBEDROOM",
     description: "Read about the latest collaboration between FOUM STUDIOS and aare carpets.",
     link: {
       href: "/stories/mixing-mediums-in-bedroom",
@@ -51,15 +51,15 @@ export default function Home() {
 
   return (
     <Layout>
-      <ShowroomSection 
+      <HeroSection 
         image={heroData.image}
         title={heroData.title}
       />
       <div className="max-w-[88rem] mx-auto">
-        <div className="px-6 md:px-12 flex flex-col space-y-16 md:space-y-24 py-16 md:py-24">
+        <div className="container-padding flex flex-col space-y-24 md:space-y-32 py-16 md:py-24">
           <TwoProductGrid products={featuredProducts} columns={2} />
         
-          <ProductTextGrid 
+          <ProductTextSection 
             image={kitchenStory.image}
             title={kitchenStory.title}
             description={kitchenStory.description}
@@ -73,7 +73,7 @@ export default function Home() {
         
           <TwoProductGrid products={featuredProducts} columns={2} />
         
-          <ProductTextGrid 
+          <ProductTextSection 
             image={bedroomStory.image}
             title={bedroomStory.title}
             description={bedroomStory.description}

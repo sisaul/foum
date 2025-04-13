@@ -5,22 +5,22 @@ import TitleSection from './title-section';
 
 export interface TitleTextLayoutSectionProps {
   title: string;
-  titleSize?: 'small' | 'medium' | 'large';
   text: string;
   textAlign?: 'left' | 'center' | 'right';
-  textMaxWidth?: string;
   titlePosition?: 'left' | 'right';
   verticalAlign?: 'start' | 'center' | 'end';
+  maxWidth?: string;
+  titleSize?: 'heading-1' | 'heading-2' | 'heading-3';
 }
 
 export default function TitleTextLayoutSection({
   title,
-  titleSize = 'small',
   text,
   textAlign = 'left',
-  textMaxWidth,
   titlePosition = 'left',
   verticalAlign = 'start',
+  maxWidth,
+  titleSize,
 }: TitleTextLayoutSectionProps) {
   const alignmentClass = {
     start: 'items-start',
@@ -35,9 +35,8 @@ export default function TitleTextLayoutSection({
       <div className={`${titlePosition === 'left' ? 'order-1' : 'order-2'}`}>
         <TitleSection 
           title={title} 
-          size={titleSize} 
-          centered={false} // Titles likely shouldn't be centered in this layout
-          // Remove internal padding from TitleSection if it adds too much space
+          centered={false}
+          size={titleSize}
         />
       </div>
 
@@ -46,7 +45,7 @@ export default function TitleTextLayoutSection({
         <TextSection
           text={text}
           align={textAlign}
-          maxWidth={textMaxWidth}
+          maxWidth={maxWidth}
           paddingY="py-0" // Remove internal padding from TextSection
         />
       </div>

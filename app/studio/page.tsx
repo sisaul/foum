@@ -35,7 +35,7 @@ export default function StudioPage() { // Renamed from StoriesPage
   return (
     <Layout>
       {/* Apply slightly larger max-width wrapper AND padding */}
-      <div className="max-w-[88rem] mx-auto px-6 md:px-12">
+      <div className="max-w-[88rem] mx-auto container-padding">
         {/* Render the intro text using layout variant */}
         <TextSection 
           text={introText} 
@@ -43,9 +43,8 @@ export default function StudioPage() { // Renamed from StoriesPage
           layoutVariant="studioIntro"
         />
 
-        {/* Product Grid Sections - Removed horizontal padding */}
-        {/* The main layout adds pt-40/pt-56, so maybe less padding needed here? */}
-        <div className="space-y-8 md:space-y-12 pt-8 md:pt-12 pb-8 md:pb-12"> {/* Removed px-6 md:px-12 */}
+        {/* Product Grid Sections - Use section-spacing for consistent padding */}
+        <div className="space-y-8 md:space-y-12 section-spacing">
           {section1Stories.length > 0 && (
             <ProductGridSection 
               products={section1Stories}

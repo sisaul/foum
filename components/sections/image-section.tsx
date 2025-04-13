@@ -49,15 +49,15 @@ export default function ImageSection({
             priority
           />
         </div>
-        {caption && <p className="mt-2 text-sm font-['Grob-light'] text-gray-700 leading-tight">{caption}</p>}
+        {caption && <p className="mt-2 text-sm text-foum-black/80 leading-tight">{caption}</p>}
       </section>
     );
   }
 
   // Grid layout
   return (
-    <section className={`py-4 md:py-6 ${fullWidth ? 'w-full' : ''}`}>
-      <div className={`grid grid-cols-1 ${gridCols[columns]} gap-6 md:gap-8`}>
+    <section className={`section-spacing ${fullWidth ? 'w-full' : ''}`}>
+      <div className={`grid grid-cols-1 ${gridCols[columns]} standard-gap`}>
         {images.map((image, index) => (
           <div key={index} className="relative aspect-square">
             <Image
@@ -69,7 +69,7 @@ export default function ImageSection({
           </div>
         ))}
       </div>
-      {caption && <p className="mt-3 text-sm font-light text-gray-700 leading-tight">{caption}</p>}
+      {caption && <p className="mt-3 text-sm text-foum-black/80 leading-tight">{caption}</p>}
     </section>
   );
 }

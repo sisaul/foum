@@ -21,22 +21,21 @@ export default function TextSection({
   content, 
   text, 
   align = 'center', 
-  maxWidth = 'max-w-none', // Default to no max-width if using explicit width
-  paddingY = 'py-8 md:py-12',
-  width = '', // Remove the default width
-  layoutVariant = 'default' // Default variant
+  maxWidth = 'max-w-none',
+  paddingY = 'section-spacing',
+  width = 'w-full md:w-3/5',
+  layoutVariant = 'default'
 }: TextSectionProps) {
   // Remove mx-auto when align is left or right
   const alignmentClass = 
     align === 'left' ? 'text-left' : 
     align === 'right' ? 'text-right' : 
-    'text-center mx-auto'; // Only center alignment gets mx-auto
+    'text-center mx-auto';
 
   // Determine width class based on variant or explicit prop
   const widthClass = 
     layoutVariant === 'studioIntro' ? 'w-full md:w-2/3' :
-    width ? width :
-    'w-full'; // Default to full width if no specific width or variant
+    width;
 
   // Prioritize rich content if available, otherwise use simple text
   const renderContent = () => {
@@ -46,9 +45,8 @@ export default function TextSection({
       // return <PortableText value={content} /> 
       return <div className="prose prose-invert dark:prose-invert lg:prose-xl">[Portable Text Content]</div>;
     } else if (text) {
-      // Change text size from text-base to text-lg
       return (
-        <p className="text-lg whitespace-pre-line">
+        <p className="body whitespace-pre-line">
           {text}
         </p>
       );
@@ -57,7 +55,7 @@ export default function TextSection({
   };
 
   return (
-    // Removed horizontal padding (px-8 md:px-16) - rely on parent container
+    // Use standard section spacing class instead of explicit padding
     <section className={`${paddingY}`}>
       {/* Apply alignment, width (now widthClass), and maxWidth classes */}
       <div className={`${alignmentClass} ${widthClass} ${maxWidth}`}>

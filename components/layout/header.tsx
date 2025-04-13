@@ -16,15 +16,15 @@ interface HeaderProps {
 
 export default function Header({ navItems, darkMode = false }: HeaderProps) {
   const pathname = usePathname() || ""
-  const textColor = darkMode ? "text-white" : "text-black"
+  const textColor = darkMode ? "text-white" : "text-foum-black"
   const [isScrolled, setIsScrolled] = useState(false)
 
-  let scrolledBgColor = "bg-[#e9e4dd]/95" // Default color
+  let scrolledBgColor = "bg-foum-cream/95" // Default color
   
   if (pathname?.startsWith('/studio')) {
     scrolledBgColor = "bg-[#1b1919]/95" // Studio dark bg
   } else if (pathname?.startsWith('/stories')) {
-    scrolledBgColor = "bg-[#E2D0A2]/95" // Stories gold bg
+    scrolledBgColor = "bg-foum-gold/95" // Stories gold bg
   }
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Header({ navItems, darkMode = false }: HeaderProps) {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-[999] w-full flex justify-between items-start py-6 px-8 md:px-16 transition-colors duration-300 ease-in-out ${isScrolled ? `${scrolledBgColor} shadow-md border-b border-black/10 dark:border-white/10` : 'bg-transparent'}`}
+      className={`fixed top-0 left-0 right-0 z-[999] w-full flex justify-between items-start py-6 container-padding transition-colors duration-300 ease-in-out ${isScrolled ? `${scrolledBgColor} shadow-md border-b border-black/10 dark:border-white/10` : 'bg-transparent'}`}
     >
       <Link href="/" className={`${textColor} text-[100px] md:text-[160px] font-bold leading-[0.85] tracking-tighter`}>
         FOUM

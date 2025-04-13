@@ -22,19 +22,20 @@ export default function Layout({ children }: LayoutProps) {
   const pathname = usePathname()
   const isHomePage = pathname === '/'
 
-  let bgColor = "bg-[#e9e4dd]"    // Default light background
-  let textColor = "text-black"      // Default dark text
+  // Use consistent theme colors from Tailwind config
+  let bgColor = "bg-foum-cream"    // Default light background
+  let textColor = "text-foum-black" // Default dark text
   let darkMode = false          // Flag for component props
   let contactBgColor = ""       // Default: inherit from parent
 
   if (pathname?.startsWith('/studio')) {
     bgColor = "bg-[#1b1919]"    // Studio dark bg
-    textColor = "text-white"      // Studio light text
+    textColor = "text-white"    // Studio light text
     darkMode = true
   } else if (pathname?.startsWith('/stories')) {
-    bgColor = "bg-[#E2D0A2]"    // Stories gold bg
-    textColor = "text-[#1E1E1E]" // Stories dark text
-    contactBgColor = "bg-[#E2D0A2]" // Set contact form to gold background
+    bgColor = "bg-foum-gold"    // Stories gold bg
+    textColor = "text-foum-black" // Stories dark text
+    contactBgColor = "bg-foum-gold" // Set contact form to gold background
     darkMode = false
   }
 

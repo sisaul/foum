@@ -28,7 +28,7 @@ export default function ProductCarousel({ products }: ProductCarouselProps) {
 
   return (
     <div className="relative mb-16" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      <h2 className="text-lg font-medium mb-8 border-b border-black pb-2">DISCOVER MORE</h2>
+      <h2 className="heading-2 mb-8 border-b border-black pb-2">DISCOVER MORE</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {products.slice(currentIndex, currentIndex + 4).map((product) => (
@@ -41,7 +41,7 @@ export default function ProductCarousel({ products }: ProductCarouselProps) {
                 className="object-cover" 
               />
             </div>
-            <h3 className="text-sm font-medium uppercase">{product.title}</h3>
+            <h3 className="heading-3">{product.title}</h3>
           </Link>
         ))}
       </div>

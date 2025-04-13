@@ -6,7 +6,7 @@ import TitleSection from "@/components/sections/title-section";
 import ImageGridSection from "@/components/sections/image-grid-section";
 import TitleTextLayoutSection from "@/components/sections/title-text-layout-section";
 import SingleImageCarousel from "@/components/sections/single-image-carousel";
-import StudioFeaturedProductsSection from "@/components/sections/studio-featured-products-section";
+import FeaturedProductsHeaderSection from "@/components/sections/featured-products-header-section";
 
 // Define basic types
 type Section = {
@@ -17,7 +17,7 @@ type Section = {
   images?: { src: string; alt: string; }[];
   layout?: 'grid' | 'single';
   fullWidth?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'heading-1' | 'heading-2' | 'heading-3';
   centered?: boolean;
   align?: 'left' | 'center' | 'right';
   maxWidth?: string;
@@ -57,7 +57,7 @@ const projectsData: Project[] = [
         _key: 'main_title', 
         _type: 'titleSection', 
         title: 'KUNDERI FLAT', 
-        size: 'medium'
+        size: 'heading-1'
       },
       {
         _key: 'intro', 
@@ -142,7 +142,7 @@ const projectsData: Project[] = [
         _key: 'title', 
         _type: 'titleSection', 
         title: 'RUMMU CAFE', 
-        size: 'medium'
+        size: 'heading-1'
       },
       {
         _key: 'intro', 
@@ -237,7 +237,7 @@ export default async function Page({ params }: PageProps) {
 
   // Find special sections
   const heroSection = project.sections.find(s => s._type === 'imageSection' && s.layout === 'single' && s.fullWidth);
-  const titleSection = project.sections.find(s => s._type === 'titleSection' && (s.size === 'medium' || !s.size));
+  const titleSection = project.sections.find(s => s._type === 'titleSection' && (s.size === 'heading-1' || !s.size));
   
   // Other content sections
   const contentSections = project.sections.filter(s => 
@@ -258,7 +258,7 @@ export default async function Page({ params }: PageProps) {
 
       {/* Content */}
       <div className="max-w-[88rem] mx-auto">
-        <div className="px-6 md:px-12 py-12 md:py-16 flex flex-col gap-12 md:gap-16">
+        <div className="container-padding section-spacing flex flex-col gap-12 md:gap-16">
           
           {/* Title + Year */}
           {titleSection?.title && (
@@ -304,7 +304,7 @@ export default async function Page({ params }: PageProps) {
                     title={section.title || ''}
                     text={section.text || ''}
                     textAlign={section.align}
-                    textMaxWidth={section.maxWidth}
+                    maxWidth={section.maxWidth}
                     titlePosition={section.titlePosition}
                     verticalAlign={section.verticalAlign}
                     titleSize={section.size}
@@ -342,13 +342,14 @@ export default async function Page({ params }: PageProps) {
               
               case 'productGridSection':
                 return section.products && (
-                  <StudioFeaturedProductsSection 
+                  <FeaturedProductsHeaderSection 
                     key={_key}
                     title={slug === 'kunderi-flat' ? 'FEATURED PRODUCTS' : 'DISCOVER MORE'}
                     products={section.products}
                     columns={section.columns as 2 | 3 | 4}
                     basePath={section.basePath}
                     hideViewDetailsLink={section.hideViewDetailsLink}
+                    darkMode={true}
                   />
                 );
                 

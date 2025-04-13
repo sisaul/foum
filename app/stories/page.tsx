@@ -40,9 +40,9 @@ export default function StoriesPage() {
 
   return (
     <Layout>
-      <div className="max-w-[88rem] mx-auto px-6 md:px-12">
+      <div className="max-w-[88rem] mx-auto">
         {/* Stories grid sections */}
-        <div className="space-y-16 md:space-y-24 py-12 md:py-16">
+        <div className="container-padding section-spacing space-y-16 md:space-y-24">
           {/* First row */}
           {section1Stories.length > 0 && (
             <ProductGridSection 

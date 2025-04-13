@@ -16,9 +16,16 @@ export interface ProductGridProps {
   columns?: number
   basePath?: string
   hideViewDetailsLink?: boolean
+  largeImages?: boolean
 }
 
-export default function ProductGridSection({ products, columns = 2, basePath, hideViewDetailsLink = false }: ProductGridProps) {
+export default function ProductGridSection({ 
+  products, 
+  columns = 2, 
+  basePath, 
+  hideViewDetailsLink = false,
+  largeImages = false
+}: ProductGridProps) {
   const gridClass = columns === 2 
     ? "grid-cols-1 md:grid-cols-2" 
     : columns === 3
@@ -26,7 +33,7 @@ export default function ProductGridSection({ products, columns = 2, basePath, hi
       : "grid-cols-1 md:grid-cols-4"
 
   return (
-    <div className={`grid ${gridClass} gap-6 md:gap-16`}>
+    <div className={`grid ${gridClass} standard-gap`}>
       {products.map((product) => {
         const productWithBasePath = { 
           ...product,
@@ -37,6 +44,7 @@ export default function ProductGridSection({ products, columns = 2, basePath, hi
             key={productWithBasePath.slug}
             {...productWithBasePath}
             viewDetailsText={hideViewDetailsLink ? "" : product.viewDetailsText}
+            largeImage={largeImages}
           />
         )
       })}

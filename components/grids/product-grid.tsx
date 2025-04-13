@@ -26,8 +26,8 @@ export default function ProductGrid({ products }: ProductGridProps) {
               />
             </div>
             <div className="flex justify-between items-center">
-              <h3 className="text-sm font-medium uppercase">{product.title}</h3>
-              <span className="text-xs underline">VIEW DETAILS</span>
+              <h3 className="heading-3">{product.title}</h3>
+              <span className="caption underline">VIEW DETAILS</span>
             </div>
           </Link>
         </div>

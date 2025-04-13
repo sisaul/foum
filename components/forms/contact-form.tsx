@@ -10,14 +10,14 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
   const textColor = darkMode ? "text-white" : "text-black";
   const inputBgColor = "bg-white";
   const inputTextColor = "text-black";
-  const borderColor = darkMode ? "border-[#ffffff90]" : "border-[#00000090]";
+  const borderColor = darkMode ? "border-[#E9E4DD]" : "border-[#000000]";
   const hoverColor = darkMode ? "hover:opacity-70" : "hover:opacity-70";
 
   return (
     <div>
       <div className="px-8 md:px-16 py-8 md:py-12">
-        <h2 className={`text-3xl md:text-4xl font-bold uppercase pb-4 ${textColor}`}>A QUESTION? AN IDEA? GET IN TOUCH.</h2>
-        <hr className={`border-t-2 ${borderColor}`} />
+        <h2 className={`title pb-4 ${textColor}`}>A QUESTION? AN IDEA? GET IN TOUCH.</h2>
+        <hr className={`border-t-4 ${borderColor}`} />
         
         <div className="py-8 md:py-12">
           <div className="flex flex-col md:flex-row gap-8 md:gap-16">
@@ -26,7 +26,7 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
               {/* Name and Mail side by side */}
               <div className="flex flex-col md:flex-row gap-6 mb-8">
                 <div className="w-full md:w-1/2">
-                  <label htmlFor="fullName" className={`block text-base uppercase mb-2 ${textColor}`}>
+                  <label htmlFor="fullName" className={`block caption mb-2 ${textColor}`}>
                     FULL NAME
                   </label>
                   <input 
@@ -36,7 +36,7 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
                 </div>
                 
                 <div className="w-full md:w-1/2">
-                  <label htmlFor="email" className={`block text-base uppercase mb-2 ${textColor}`}>
+                  <label htmlFor="email" className={`block caption mb-2 ${textColor}`}>
                     MAIL
                   </label>
                   <input 
@@ -50,29 +50,29 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
               {/* Three columns */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
                 <div>
-                  <h3 className={`text-base font-medium uppercase mb-4 ${textColor}`}>COMPANY</h3>
+                  <h3 className={`caption mb-4 ${textColor}`}>COMPANY</h3>
                   <ul className="space-y-3">
-                    <li><Link href="/about" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>About</Link></li>
-                    <li><Link href="/resellers" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>Resellers</Link></li>
-                    <li><Link href="/newsletter" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>Newsletter</Link></li>
+                    <li><Link href="/about" className={`small ${hoverColor} transition-opacity ${textColor}`}>About</Link></li>
+                    <li><Link href="/resellers" className={`small ${hoverColor} transition-opacity ${textColor}`}>Resellers</Link></li>
+                    <li><Link href="/newsletter" className={`small ${hoverColor} transition-opacity ${textColor}`}>Newsletter</Link></li>
                   </ul>
                 </div>
                 
                 <div>
-                  <h3 className={`text-base font-medium uppercase mb-4 ${textColor}`}>COMMUNITY</h3>
+                  <h3 className={`caption mb-4 ${textColor}`}>COMMUNITY</h3>
                   <ul className="space-y-3">
-                    <li><Link href="/stories" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>Stories</Link></li>
-                    <li><a href="https://instagram.com/foumstudio" target="_blank" rel="noopener noreferrer" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>Instagram</a></li>
-                    <li><a href="https://linkedin.com/company/foumstudio" target="_blank" rel="noopener noreferrer" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>LinkedIn</a></li>
+                    <li><Link href="/stories" className={`small ${hoverColor} transition-opacity ${textColor}`}>Stories</Link></li>
+                    <li><a href="https://instagram.com/foumstudio" target="_blank" rel="noopener noreferrer" className={`small ${hoverColor} transition-opacity ${textColor}`}>Instagram</a></li>
+                    <li><a href="https://linkedin.com/company/foumstudio" target="_blank" rel="noopener noreferrer" className={`small ${hoverColor} transition-opacity ${textColor}`}>LinkedIn</a></li>
                   </ul>
                 </div>
                 
                 <div>
-                  <h3 className={`text-base font-medium uppercase mb-4 ${textColor}`}>INFO</h3>
+                  <h3 className={`caption mb-4 ${textColor}`}>INFO</h3>
                   <ul className="space-y-3">
-                    <li><Link href="/faq" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>FAQ</Link></li>
-                    <li><Link href="/terms-conditions" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>Terms & Conditions</Link></li>
-                    <li><Link href="/privacy-policy" className={`text-base ${hoverColor} transition-opacity ${textColor}`}>Privacy Policy</Link></li>
+                    <li><Link href="/faq" className={`small ${hoverColor} transition-opacity ${textColor}`}>FAQ</Link></li>
+                    <li><Link href="/terms-conditions" className={`small ${hoverColor} transition-opacity ${textColor}`}>Terms & Conditions</Link></li>
+                    <li><Link href="/privacy-policy" className={`small ${hoverColor} transition-opacity ${textColor}`}>Privacy Policy</Link></li>
                   </ul>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
             
             {/* Right side - Message box */}
             <div className="w-full md:w-1/2">
-              <label htmlFor="message" className={`block text-base uppercase mb-2 ${textColor}`}>
+              <label htmlFor="message" className={`block caption mb-2 ${textColor}`}>
                 YOUR MESSAGE
               </label>
               <textarea 
@@ -91,14 +91,14 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
           </div>
         </div>
         
-        <hr className={`border-t-2 ${borderColor}`} />
+        <hr className={`border-t-4 ${borderColor}`} />
         
         <div className="py-4 flex justify-between">
           <div>
-            <p className={`text-base ${textColor}`}>FOUM STUDIOS</p>
+            <p className={`caption ${textColor}`}>FOUM STUDIOS</p>
           </div>
           <div>
-            <p className={`text-base ${textColor}`}>ALL RIGHTS RESERVED</p>
+            <p className={`caption ${textColor}`}>ALL RIGHTS RESERVED</p>
           </div>
         </div>
       </div>

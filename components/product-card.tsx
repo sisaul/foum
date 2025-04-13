@@ -10,6 +10,7 @@ interface ProductCardProps {
   viewDetailsText?: string
   basePath?: string
   linkClassName?: string
+  largeImage?: boolean
 }
 
 export default function ProductCard({ 
@@ -18,12 +19,13 @@ export default function ProductCard({
   slug, 
   viewDetailsText = "VIEW DETAILS", 
   basePath = "/products",
-  linkClassName = ""
+  linkClassName = "",
+  largeImage = false
 }: ProductCardProps) {
   return (
     <div className="flex flex-col">
       <Link href={`${basePath}/${slug}`} className="block group">
-        <div className="relative aspect-square mb-2">
+        <div className={`relative ${largeImage ? 'aspect-[1.5/1]' : 'aspect-square'} mb-2`}>
           <Image
             src={imageSrc}
             alt={title}
@@ -33,13 +35,15 @@ export default function ProductCard({
         </div>
       </Link>
       <div className="pt-4 flex justify-between items-start">
-        <h3 className="text-base uppercase font-medium leading-tight">{title}</h3>
-        <Link 
-          href={`${basePath}/${slug}`}
-          className={`text-base uppercase font-medium hover:opacity-70 transition-opacity leading-tight underline ${linkClassName}`}
-        >
-          {viewDetailsText}
-        </Link>
+        <h3 className="caption leading-tight font-bold">{title}</h3>
+        {viewDetailsText && (
+          <Link 
+            href={`${basePath}/${slug}`}
+            className={`caption hover:opacity-70 transition-opacity leading-tight underline underline-offset-4 decoration-1 ${linkClassName}`}
+          >
+            {viewDetailsText}
+          </Link>
+        )}
       </div>
     </div>
   )

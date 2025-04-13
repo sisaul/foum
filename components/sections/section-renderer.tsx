@@ -1,5 +1,5 @@
 import { Section } from '../../lib/sanity/types';
-import HeroSection from './hero-section';
+import HeroSection from './page-hero-section';
 import ImageSection from './image-section';
 import TextSection from './text-section';
 import ImageCarousel from './image-carousel';

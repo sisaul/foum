@@ -21,12 +21,9 @@ export default function ProjectCard({ title, imageSrc, slug, description }: Proj
           className="object-cover transition-opacity group-hover:opacity-90"
         />
       </div>
-      <h3 className="text-xl font-medium mb-2">{title}</h3>
-      {description && <p className="text-sm text-gray-700 mb-2">{description}</p>}
-      <div className="flex items-center">
-        <span className="text-sm">View project</span>
-        <span className="ml-2">→</span>
-      </div>
+      <h3 className="heading-3 mb-2">{title}</h3>
+      {description && <p className="caption mb-2">{description}</p>}
+      <Link href={`/studio/${slug}`} className="caption underline">View project</Link>
     </Link>
   )
 } 

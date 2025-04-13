@@ -17,7 +17,7 @@ export default function RelatedProduct({ title, imageSrc, slug }: RelatedProduct
           className="object-cover w-full h-full"
         />
       </div>
-      <h3 className="text-sm font-medium uppercase">{title}</h3>
+      <h3 className="caption">{title}</h3>
     </div>
   )
 }
