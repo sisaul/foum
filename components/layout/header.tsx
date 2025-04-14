@@ -5,9 +5,10 @@ import React, { useState, useEffect } from "react"
 
 interface HeaderProps {
   darkMode?: boolean
+  navItems: { title: string; path: string; }[]
 }
 
-export default function Header({ darkMode = false }: HeaderProps) {
+export default function Header({ darkMode = false, navItems }: HeaderProps) {
   const textColor = darkMode ? "text-white" : "text-foum-black"
   const [isMobile, setIsMobile] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -41,31 +42,21 @@ export default function Header({ darkMode = false }: HeaderProps) {
         </button>
       ) : (
         <div className={`flex ml-auto ${textColor} text-lg leading-7 font-caption uppercase mt-3 font-medium`} style={{ gap: 'clamp(60px, calc(160 * (100vw - 1020px) / 760), 160px)' }}>
-          <Link href="/products" className="hover:opacity-70 transition-opacity whitespace-nowrap">
-            PRODUCTS
-          </Link>
-          <Link href="/stories" className="hover:opacity-70 transition-opacity whitespace-nowrap">
-            STORIES
-          </Link>
-          <Link href="/about" className="hover:opacity-70 transition-opacity whitespace-nowrap">
-            ABOUT
-          </Link>
-          <Link href="/studio" className="hover:opacity-70 transition-opacity whitespace-nowrap">
-            STUDIO
-          </Link>
-          <Link href="/contact" className="hover:opacity-70 transition-opacity whitespace-nowrap">
-            CONTACT
-          </Link>
+          {navItems.map((item) => (
+            <Link key={item.path} href={item.path} className="hover:opacity-70 transition-opacity whitespace-nowrap">
+              {item.title}
+            </Link>
+          ))}
         </div>
       )}
       {isMobile && isMenuOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-40">
           <div className="flex flex-col items-center justify-center h-full space-y-8 text-white text-2xl font-caption uppercase">
-            <Link href="/products" onClick={() => setIsMenuOpen(false)}>PRODUCTS</Link>
-            <Link href="/stories" onClick={() => setIsMenuOpen(false)}>STORIES</Link>
-            <Link href="/about" onClick={() => setIsMenuOpen(false)}>ABOUT</Link>
-            <Link href="/studio" onClick={() => setIsMenuOpen(false)}>STUDIO</Link>
-            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
+            {navItems.map((item) => (
+              <Link key={item.path} href={item.path} onClick={() => setIsMenuOpen(false)}>
+                {item.title}
+              </Link>
+            ))}
           </div>
         </div>
       )}
