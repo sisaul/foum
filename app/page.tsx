@@ -54,6 +54,7 @@ export default function Home() {
       <HeroSection 
         image={heroData.image}
         title={heroData.title}
+        className="text-lg leading-7 font-caption"
       />
       <div className="max-w-[88rem] mx-auto">
         <div className="container-padding flex flex-col space-y-24 md:space-y-32 py-16 md:py-24">

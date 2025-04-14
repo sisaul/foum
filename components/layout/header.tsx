@@ -1,62 +1,74 @@
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import React, { useState, useEffect } from "react"
 
-interface NavItem {
-  title: string
-  path: string
-}
-
 interface HeaderProps {
-  navItems: NavItem[]
   darkMode?: boolean
 }
 
-export default function Header({ navItems, darkMode = false }: HeaderProps) {
-  const pathname = usePathname() || ""
+export default function Header({ darkMode = false }: HeaderProps) {
   const textColor = darkMode ? "text-white" : "text-foum-black"
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  let scrolledBgColor = "bg-foum-cream/95" // Default color
-  
-  if (pathname?.startsWith('/studio')) {
-    scrolledBgColor = "bg-[#1b1919]/95" // Studio dark bg
-  } else if (pathname?.startsWith('/stories')) {
-    scrolledBgColor = "bg-foum-gold/95" // Stories gold bg
-  }
+  const [isMobile, setIsMobile] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1020)
     }
-
-    window.addEventListener('scroll', handleScroll)
-
-    handleScroll()
-
-    return () => window.removeEventListener('scroll', handleScroll)
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-[999] w-full flex justify-between items-start py-6 container-padding transition-colors duration-300 ease-in-out ${isScrolled ? `${scrolledBgColor} shadow-md border-b border-black/10 dark:border-white/10` : 'bg-transparent'}`}
+      className={`fixed top-0 left-0 right-0 z-[999] w-full flex items-start py-6 px-8 lg:px-16`}
     >
-      <Link href="/" className={`${textColor} text-[100px] md:text-[160px] font-bold leading-[0.85] tracking-tighter`}>
+      <Link href="/" className={`${textColor} text-[80px] md:text-[120px] font-bold leading-[0.85] tracking-tighter w-[200px]`}>
         FOUM
       </Link>
-      <nav className={`flex space-x-8 md:space-x-12 ${textColor} text-base uppercase font-medium pt-2`}>
-        {navItems.map((item) => (
-          <Link 
-            key={item.path}
-            href={item.path}
-            className={`${pathname === item.path ? "underline decoration-1 underline-offset-4" : ""} hover:opacity-70 transition-opacity`}
-          >
-            {item.title}
+      {isMobile ? (
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className={`${textColor} z-50 ml-auto`}
+        >
+          <div className="space-y-2">
+            <span className={`block w-8 h-0.5 ${textColor === "text-white" ? "bg-white" : "bg-black"}`}></span>
+            <span className={`block w-8 h-0.5 ${textColor === "text-white" ? "bg-white" : "bg-black"}`}></span>
+            <span className={`block w-8 h-0.5 ${textColor === "text-white" ? "bg-white" : "bg-black"}`}></span>
+          </div>
+        </button>
+      ) : (
+        <div className={`flex ml-auto ${textColor} text-lg leading-7 font-caption uppercase mt-3 font-medium`} style={{ gap: 'clamp(60px, calc(160 * (100vw - 1020px) / 760), 160px)' }}>
+          <Link href="/products" className="hover:opacity-70 transition-opacity whitespace-nowrap">
+            PRODUCTS
           </Link>
-        ))}
-      </nav>
+          <Link href="/stories" className="hover:opacity-70 transition-opacity whitespace-nowrap">
+            STORIES
+          </Link>
+          <Link href="/about" className="hover:opacity-70 transition-opacity whitespace-nowrap">
+            ABOUT
+          </Link>
+          <Link href="/studio" className="hover:opacity-70 transition-opacity whitespace-nowrap">
+            STUDIO
+          </Link>
+          <Link href="/contact" className="hover:opacity-70 transition-opacity whitespace-nowrap">
+            CONTACT
+          </Link>
+        </div>
+      )}
+      {isMobile && isMenuOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-40">
+          <div className="flex flex-col items-center justify-center h-full space-y-8 text-white text-2xl font-caption uppercase">
+            <Link href="/products" onClick={() => setIsMenuOpen(false)}>PRODUCTS</Link>
+            <Link href="/stories" onClick={() => setIsMenuOpen(false)}>STORIES</Link>
+            <Link href="/about" onClick={() => setIsMenuOpen(false)}>ABOUT</Link>
+            <Link href="/studio" onClick={() => setIsMenuOpen(false)}>STUDIO</Link>
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
