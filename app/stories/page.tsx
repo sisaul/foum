@@ -57,7 +57,7 @@ export default function StoriesPage() {
         />
 
         {/* Same spacing structure as studio page */}
-        <div className="space-y-8 md:space-y-12 pt-8 md:pt-16">
+        <div className="space-y-8 md:space-y-12 pt-8 md:pt-16 pb-10 md:pb-24">
           {section1Stories.length > 0 && (
             <ProductGridSection 
               products={section1Stories.map(story => ({

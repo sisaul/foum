@@ -4,7 +4,15 @@ import ContactForm from "@/components/forms/contact-form"
 import Header from "@/components/layout/header"
 import NewsletterBanner from "@/components/layout/newsletter-banner"
 import { usePathname } from "next/navigation"
-import React from "react"
+import React, { createContext, useContext } from "react"
+
+// Create a context for layout properties
+export const LayoutContext = createContext({
+  darkMode: false
+});
+
+// Custom hook to access layout properties
+export const useLayout = () => useContext(LayoutContext);
 
 interface LayoutProps {
   children: React.ReactNode
@@ -39,17 +47,22 @@ export default function Layout({ children }: LayoutProps) {
     darkMode = false
   }
 
+  // Create the layout context value
+  const layoutValue = { darkMode };
+
   return (
-    <div className={`min-h-screen ${bgColor} ${textColor} relative`}>
-      <Header navItems={navItems} darkMode={darkMode} />
-      <main className={`flex-grow relative ${!isHomePage ? 'pt-40 md:pt-56' : ''}`}>
-        {children}
-      </main>
-      <div className={`relative z-[998] ${contactBgColor}`}>
-        <ContactForm darkMode={darkMode} />
+    <LayoutContext.Provider value={layoutValue}>
+      <div className={`min-h-screen ${bgColor} ${textColor} relative`}>
+        <Header navItems={navItems} darkMode={darkMode} />
+        <main className={`flex-grow relative ${!isHomePage ? 'pt-40 md:pt-56' : ''}`}>
+          {children}
+        </main>
+        <div className={`relative z-[998] ${contactBgColor}`}>
+          <ContactForm darkMode={darkMode} />
+        </div>
+        <NewsletterBanner />
       </div>
-      <NewsletterBanner />
-    </div>
+    </LayoutContext.Provider>
   )
 }
 

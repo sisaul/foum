@@ -20,7 +20,7 @@ export default function AboutPage() {
 
   return (
     <Layout>
-      <div className="max-w-[88rem] mx-auto">
+      <div className="max-w-[88rem] mx-auto pb-10 md:pb-24">
         <div className="px-0 md:px-12">
           <AboutTextSection 
             image={{

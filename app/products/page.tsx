@@ -14,7 +14,7 @@ export default function ProductsPage() {
   return (
     <Layout>
       <div className="max-w-[88rem] mx-auto">
-        <div className="py-8 md:py-16 px-5 md:px-0">
+        <div className="py-8 md:py-16 px-5 md:px-16 pb-10 md:pb-24">
           <ProductGridSection 
             products={products} 
             columns={2} 

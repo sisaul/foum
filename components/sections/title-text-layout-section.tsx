@@ -47,7 +47,6 @@ export default function TitleTextLayoutSection({
           maxWidth={maxWidth}
           paddingY="py-0" // Remove internal padding from TextSection
           layoutVariant="titleText"
-          noPadding={true}
         />
       </div>
     </div>

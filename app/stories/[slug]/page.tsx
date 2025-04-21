@@ -163,7 +163,7 @@ export default async function Page({ params }: PageProps) {
 
       {/* Content */}
       <div className="max-w-[88rem] mx-auto">
-        <div className="px-5 md:px-0 py-8 md:py-16 flex flex-col gap-12 md:gap-16">
+        <div className="px-5 md:px-0 py-10 md:py-24 flex flex-col gap-12 md:gap-16">
           
           {/* Title + Date */}
           {titleSection?.title && (

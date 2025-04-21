@@ -54,8 +54,8 @@ export default function ContactForm({ darkMode = false }: ContactFormProps) {
   };
 
   return (
-    <div>
-      <div className="px-5 md:px-16 py-8 md:py-12">
+    <div className="py-8 md:py-12">
+      <div className="px-5 md:px-16">
         <h2 className={`title pb-4 ${textColor}`}>A QUESTION? AN IDEA? GET IN TOUCH.</h2>
         <hr className={`border-t-4 ${borderColor}`} />
         

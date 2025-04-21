@@ -82,7 +82,7 @@ export default function ProductCarousel({
   return (
     <section className="w-full">
       <div className="max-w-[88rem] mx-auto">
-        <div className="py-8 md:py-16 px-5 md:px-16">
+        <div className="py-8 md:py-16 px-5 md:px-0">
           <div className={`w-full border-t-4 ${darkMode ? "border-[#E9E4DD]" : "border-[#000000]"} mb-4`}></div>
           <h2 className={`caption mb-6 md:mb-8 ${textColor}`}>{title}</h2>
           
