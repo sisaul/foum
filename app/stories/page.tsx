@@ -48,37 +48,38 @@ export default function StoriesPage() {
 
   return (
     <Layout>
-      <div className="max-w-[88rem] mx-auto px-5 md:px-0">
-        <TextSection 
-          text={introText} 
-          align="left"
-          layoutVariant="studioIntro"
-          paddingY="pt-8 pb-6 md:py-16" // Match studio page padding
-        />
+      <div className="max-w-[88rem] mx-auto">
+        <div className="py-8 md:py-16 px-5 md:px-16 pb-10 md:pb-24">
+          <TextSection 
+            text={introText} 
+            align="left"
+            layoutVariant="studioIntro"
+            paddingY="pt-0 pb-6 md:py-0" 
+          />
 
-        {/* Same spacing structure as studio page */}
-        <div className="space-y-8 md:space-y-12 pt-8 md:pt-16 pb-10 md:pb-24">
-          {section1Stories.length > 0 && (
-            <ProductGridSection 
-              products={section1Stories.map(story => ({
-                ...story,
-                basePath: "/stories",
-              }))}
-              columns={2}
-              largeImages={false}
-            />
-          )}
+          <div className="space-y-8 md:space-y-12 pt-8 md:pt-16">
+            {section1Stories.length > 0 && (
+              <ProductGridSection 
+                products={section1Stories.map(story => ({
+                  ...story,
+                  basePath: "/stories",
+                }))}
+                columns={2}
+                largeImages={false}
+              />
+            )}
 
-          {section2Stories.length > 0 && (
-            <ProductGridSection 
-              products={section2Stories.map(story => ({
-                ...story,
-                basePath: "/stories",
-              }))}
-              columns={2}
-              largeImages={false}
-            />
-          )}
+            {section2Stories.length > 0 && (
+              <ProductGridSection 
+                products={section2Stories.map(story => ({
+                  ...story,
+                  basePath: "/stories",
+                }))}
+                columns={2}
+                largeImages={false}
+              />
+            )}
+          </div>
         </div>
       </div>
     </Layout>
