@@ -8,6 +8,7 @@ interface Product {
   imageSrc: string
   basePath?: string
   viewDetailsText?: string
+  viewDetailsMobile?: boolean | string
   linkClassName?: string
 }
 
@@ -33,7 +34,7 @@ export default function ProductGridSection({
       : "grid-cols-1 md:grid-cols-4"
 
   return (
-    <div className={`grid ${gridClass} standard-gap`}>
+    <div className={`grid ${gridClass} gap-6 md:gap-8`}>
       {products.map((product) => {
         const productWithBasePath = { 
           ...product,
@@ -44,6 +45,7 @@ export default function ProductGridSection({
             key={productWithBasePath.slug}
             {...productWithBasePath}
             viewDetailsText={hideViewDetailsLink ? "" : product.viewDetailsText}
+            viewDetailsMobile={product.viewDetailsMobile}
             largeImage={largeImages}
           />
         )

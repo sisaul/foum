@@ -56,7 +56,7 @@ export default function Home() {
         title={heroData.title}
       />
       <div className="max-w-[88rem] mx-auto">
-        <div className="container-padding flex flex-col space-y-24 md:space-y-32 py-16 md:py-24">
+        <div className="px-5 md:px-16 flex flex-col space-y-16 md:space-y-32 py-10 md:py-24">
           <TwoProductGrid products={featuredProducts} columns={2} />
         
           <ProductTextSection 

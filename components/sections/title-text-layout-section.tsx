@@ -28,12 +28,14 @@ export default function TitleTextLayoutSection({
 
   return (
     // Remove padding from the section itself, rely on parent
-    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 ${alignmentClass}`}>
+    <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 ${alignmentClass}`}>
       {/* Title Area */}
-      <div className={`${titlePosition === 'left' ? 'order-1' : 'order-2'}`}>
+      <div className={`${titlePosition === 'left' ? 'order-1' : 'order-2'} mb-0 md:mb-0`}>
         <TitleSection 
           title={title} 
           centered={false}
+          size="small"
+          noPadding={true}
         />
       </div>
 
@@ -45,6 +47,7 @@ export default function TitleTextLayoutSection({
           maxWidth={maxWidth}
           paddingY="py-0" // Remove internal padding from TextSection
           layoutVariant="titleText"
+          noPadding={true}
         />
       </div>
     </div>

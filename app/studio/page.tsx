@@ -13,8 +13,9 @@ const studio = [
 ].map(studio => ({
   ...studio,
   basePath: "/studio", // Adjusted basePath from /studio
-  viewDetailsText: "Read More",
-  linkClassName: "underline decoration-1 underline-offset-4"
+  viewDetailsText: "READ MORE",
+  viewDetailsMobile: true,
+  linkClassName: "md:underline md:decoration-1 md:underline-offset-4 md:text-base"
 }));
 
 // Prepare data chunks for the sections
@@ -34,16 +35,16 @@ export default function StudioPage() { // Renamed from StoriesPage
   // For now, just render the product grids within the Layout
   return (
     <Layout>
-      <div className="max-w-[88rem] mx-auto container-padding">
+      <div className="max-w-[88rem] mx-auto px-5 md:px-0">
         <TextSection 
           text={introText} 
           align="left"
           layoutVariant="studioIntro"
-          paddingY="pb-0" // Remove bottom padding from text section
+          paddingY="pt-8 pb-6 md:py-16" // Adjust padding to match design
         />
 
         {/* Reduced top spacing by adjusting space-y and removing section-spacing */}
-        <div className="space-y-8 md:space-y-12 pt-16">
+        <div className="space-y-8 md:space-y-12 pt-8 md:pt-16">
           {section1Stories.length > 0 && (
             <ProductGridSection 
               products={section1Stories}

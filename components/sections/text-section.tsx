@@ -22,7 +22,7 @@ export default function TextSection({
   text, 
   align = 'center', 
   maxWidth = 'max-w-none',
-  paddingY = 'section-spacing',
+  paddingY = 'py-8 md:py-16',
   width = 'w-full md:w-3/5',
   layoutVariant = 'default'
 }: TextSectionProps) {
@@ -59,7 +59,7 @@ export default function TextSection({
     // Use standard section spacing class instead of explicit padding
     <section className={`${paddingY}`}>
       {/* Apply alignment, width (now widthClass), and maxWidth classes */}
-      <div className={`${alignmentClass} ${widthClass} ${maxWidth}`}>
+      <div className={`${alignmentClass} ${widthClass} ${maxWidth} px-0`}>
         {renderContent()}
       </div>
     </section>

@@ -6,17 +6,19 @@ export interface TitleSectionProps {
   centered?: boolean
   date?: string
   size?: 'default' | 'small'
+  noPadding?: boolean
 }
 
 export default function TitleSection({ 
   title, 
   centered = false,
   date,
-  size = 'default'
+  size = 'default',
+  noPadding = false
 }: TitleSectionProps) {
   return (
     // Remove padding from the section itself
-    <div className={`${centered ? 'text-center' : ''}`}>
+    <div className={`${centered ? 'text-center' : ''} ${noPadding ? 'px-0' : 'px-5 md:px-0'}`}>
       <h2 className={size === 'default' ? 'title' : 'title-small'}>
         {title}
       </h2>

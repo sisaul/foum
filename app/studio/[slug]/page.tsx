@@ -263,17 +263,15 @@ export default async function Page({ params }: PageProps) {
 
       {/* Content */}
       <div className="max-w-[88rem] mx-auto">
-        <div className="container-padding section-spacing flex flex-col gap-12 md:gap-16">
+        <div className="px-5 md:px-0 py-8 md:py-16 flex flex-col gap-12 md:gap-16">
           
-          {/* Title + Year */}
+          {/* Title */}
           {titleSection?.title && (
-            <div className="flex justify-between items-baseline">
-              <TitleSection 
-                title={titleSection.title || ''}
-                centered={titleSection.centered}
-              />
-              <span className="text-sm font-mono pl-4">{slug === 'kunderi-flat' ? '2024' : '2023'}</span>
-            </div>
+            <TitleSection 
+              title={titleSection.title || ''}
+              centered={titleSection.centered}
+              noPadding={true}
+            />
           )}
 
           {/* All content sections */}

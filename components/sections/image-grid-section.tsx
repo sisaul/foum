@@ -16,7 +16,7 @@ export interface ImageGridSectionProps {
 export default function ImageGridSection({
   images,
   columns = 2,
-  gap = 'gap-8', // Default gap
+  gap = 'gap-4 md:gap-8', // Default gap different for mobile and desktop
 }: ImageGridSectionProps) {
   if (!images || images.length === 0) {
     return null;
@@ -32,7 +32,7 @@ export default function ImageGridSection({
     // Removed padding/section wrapper, rely on parent for spacing 
     <div className={`grid grid-cols-1 ${gridColsClass} ${gap}`}>
       {images.map((image, index) => (
-        <div key={index} className="relative aspect-square"> 
+        <div key={index} className="relative aspect-square mb-2 md:mb-0"> 
           <Image
             src={image.src}
             alt={image.alt}

@@ -35,8 +35,8 @@ export default function ImageSection({
   if (layout === 'single' && images.length > 0) {
     // Determine container classes: Use aspect ratio
     const singleLayoutClasses = fullWidth 
-        ? 'aspect-[2.4/1]' // Hero aspect ratio
-        : 'aspect-[2/1]'; // Non-fullWidth single image aspect ratio (approx 1312:640)
+        ? 'aspect-[2.4/1] md:aspect-[2.4/1]' // Hero aspect ratio
+        : 'aspect-[1.5/1] md:aspect-[2/1]'; // Adjust mobile aspect ratio
 
     return (
       <section className={`${fullWidth ? 'w-full' : ''}`}>
@@ -49,15 +49,15 @@ export default function ImageSection({
             priority
           />
         </div>
-        {caption && <p className="mt-2 text-sm text-foum-black/80 leading-tight">{caption}</p>}
+        {caption && <p className="mt-2 text-sm text-foum-black/80 leading-tight px-6 md:px-0">{caption}</p>}
       </section>
     );
   }
 
   // Grid layout
   return (
-    <section className={`section-spacing ${fullWidth ? 'w-full' : ''}`}>
-      <div className={`grid grid-cols-1 ${gridCols[columns]} standard-gap`}>
+    <section className={`py-8 md:py-16 ${fullWidth ? 'w-full' : ''}`}>
+      <div className={`grid grid-cols-1 ${gridCols[columns]} gap-4 md:gap-8 px-6 md:px-0`}>
         {images.map((image, index) => (
           <div key={index} className="relative aspect-square">
             <Image
@@ -69,7 +69,7 @@ export default function ImageSection({
           </div>
         ))}
       </div>
-      {caption && <p className="mt-3 text-sm text-foum-black/80 leading-tight">{caption}</p>}
+      {caption && <p className="mt-3 text-sm text-foum-black/80 leading-tight px-6 md:px-0">{caption}</p>}
     </section>
   );
 }

@@ -163,17 +163,25 @@ export default async function Page({ params }: PageProps) {
 
       {/* Content */}
       <div className="max-w-[88rem] mx-auto">
-        <div className="container-padding section-spacing flex flex-col gap-12 md:gap-16">
+        <div className="px-5 md:px-0 py-8 md:py-16 flex flex-col gap-12 md:gap-16">
           
           {/* Title + Date */}
           {titleSection?.title && (
-            <div className="flex justify-between items-baseline">
+            <div className="flex justify-between items-baseline px-0">
               <TitleSection 
                 title={titleSection.title || ''}
-                centered={titleSection.centered}
+                centered={false}
+                noPadding={true}
               />
               {story.date && (
-                <span className="text-sm font-mono pl-4">{story.date}</span>
+                <span className="text-sm font-mono pl-4">
+                  <span className="md:hidden">
+                    {story.date.split(" ")[1] /* Only show year on mobile */}
+                  </span>
+                  <span className="hidden md:inline">
+                    {story.date /* Show full date on desktop */}
+                  </span>
+                </span>
               )}
             </div>
           )}

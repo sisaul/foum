@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 
 interface ProductImageCarouselProps {
@@ -14,8 +14,24 @@ export default function ProductImageCarousel({ images }: ProductImageCarouselPro
   const [currentIndex, setCurrentIndex] = useState(0)
   const [cursorStyle, setCursorStyle] = useState<'default' | 'prev' | 'next'>('default')
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkIsMobile()
+    window.addEventListener('resize', checkIsMobile)
+    
+    return () => {
+      window.removeEventListener('resize', checkIsMobile)
+    }
+  }, [])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return
+    
     const { clientX, clientY, currentTarget } = e
     const { left, width } = currentTarget.getBoundingClientRect()
     const x = clientX - left
@@ -45,6 +61,14 @@ export default function ProductImageCarousel({ images }: ProductImageCarouselPro
     setCursorStyle('default')
   }
 
+  const handleSwipe = (direction: 'prev' | 'next') => {
+    if (direction === 'prev') {
+      setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+    } else {
+      setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+    }
+  }
+
   return (
     <div 
       className="relative aspect-square w-full"
@@ -53,8 +77,8 @@ export default function ProductImageCarousel({ images }: ProductImageCarouselPro
       onMouseLeave={handleMouseLeave}
       style={{ cursor: cursorStyle === 'default' ? 'default' : 'none' }}
     >
-      {/* Custom cursor */}
-      {cursorStyle !== 'default' && (
+      {/* Custom cursor (desktop only) */}
+      {!isMobile && cursorStyle !== 'default' && (
         <div 
           className="fixed pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 text-[64px] text-[#000000]"
           style={{ 
@@ -64,6 +88,30 @@ export default function ProductImageCarousel({ images }: ProductImageCarouselPro
         >
           {cursorStyle === 'prev' ? '<' : '>'}
         </div>
+      )}
+
+      {/* Mobile controls */}
+      {isMobile && (
+        <>
+          <button 
+            onClick={(e) => {
+              e.stopPropagation()
+              handleSwipe('prev')
+            }}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 text-2xl text-black/70 bg-white/20 h-8 w-8 flex items-center justify-center rounded-full backdrop-blur-sm"
+          >
+            ←
+          </button>
+          <button 
+            onClick={(e) => {
+              e.stopPropagation()
+              handleSwipe('next')
+            }}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 text-2xl text-black/70 bg-white/20 h-8 w-8 flex items-center justify-center rounded-full backdrop-blur-sm"
+          >
+            →
+          </button>
+        </>
       )}
 
       {/* Images */}

@@ -15,8 +15,8 @@ export default function AboutTextSection({
   description,
 }: AboutTextSectionProps) {
   return (
-    <section className="section-spacing">
-      <div className="grid grid-cols-1 md:grid-cols-2 standard-gap">
+    <section className="py-8 md:py-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 px-6 md:px-0">
         <div className="relative aspect-square">
           <Image 
             src={image.src || "/placeholder.svg"} 
@@ -25,8 +25,8 @@ export default function AboutTextSection({
             className="object-cover" 
           />
         </div>
-        <div>
-          <p className="body max-w-[80%]">{description}</p>
+        <div className="pt-4 md:pt-0">
+          <p className="body">{description}</p>
         </div>
       </div>
     </section>

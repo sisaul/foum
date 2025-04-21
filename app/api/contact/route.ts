@@ -3,12 +3,12 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { fullName, email, message } = body;
     
     // Here you would typically send this data to an email service or database
     // For example, using nodemailer, SendGrid, or storing in Sanity
     
-    console.log('Contact form submission:', { name, email, message });
+    console.log('Contact form submission:', { fullName, email, message });
     
     // Return success response
     return NextResponse.json(

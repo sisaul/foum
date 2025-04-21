@@ -70,22 +70,22 @@ export default function ProductPage() {
   return (
     <Layout>
       <div className="max-w-[88rem] mx-auto">
-        <div className="container-padding section-spacing">
-          <div className="grid grid-cols-1 md:grid-cols-2 standard-gap mb-24">
+        <div className="py-8 md:py-16 px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-24">
             <div className="md:col-span-1">
-              <div className="sticky top-[200px]">
+              <div className="md:sticky md:top-[200px]">
                 <ProductImageCarousel images={productData.images} />
               </div>
             </div>
             <div className="md:col-span-1">
-              <div className="space-y-16">
+              <div className="space-y-10 md:space-y-16">
                 <div>
-                  <h1 className="caption mb-8">{productData.title}</h1>
-                  <p className="small mb-16">{productData.description}</p>
+                  <h1 className="caption mb-4 md:mb-8">{productData.title}</h1>
+                  <p className="small mb-8 md:mb-16">{productData.description}</p>
                 </div>
 
                 <div>
-                  <p className="caption mb-8">MATERIALS</p>
+                  <p className="caption mb-4 md:mb-8">MATERIALS</p>
                   <div className="flex space-x-4">
                     {productData.materials.map((material) => (
                       <ColorOption
@@ -99,8 +99,8 @@ export default function ProductPage() {
                 </div>
 
                 <div>
-                  <p className="caption mb-8">AVAILABLE SIZES</p>
-                  <div className="flex space-x-8">
+                  <p className="caption mb-4 md:mb-8">AVAILABLE SIZES</p>
+                  <div className="flex space-x-4 md:space-x-8">
                     {productData.sizes.map((size) => (
                       <div key={size} className="small">
                         {size}
@@ -110,10 +110,10 @@ export default function ProductPage() {
                 </div>
 
                 <div>
-                  <Button className="bg-black text-white rounded-full px-8 py-2">GET IN TOUCH</Button>
+                  <Button className="bg-black text-white rounded-full px-6 py-2 md:px-8 md:py-2">GET IN TOUCH</Button>
                 </div>
 
-                <div className="space-y-16">
+                <div className="space-y-8 md:space-y-16">
                   {productData.accordionSections.map((section, index) => (
                     <AccordionSection
                       key={index}

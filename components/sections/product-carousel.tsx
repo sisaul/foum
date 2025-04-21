@@ -17,9 +17,19 @@ export default function ProductCarousel({
   const [currentIndex, setCurrentIndex] = useState(0)
   const [showArrows, setShowArrows] = useState(false)
   const [imageHeight, setImageHeight] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const textColor = darkMode ? "text-white" : "text-foum-black"
-  const itemsPerPage = productGridProps.columns || 4
+  const itemsPerPage = isMobile ? 1 : (productGridProps.columns || 4)
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   
   useEffect(() => {
     if (products.length > 0) {
@@ -72,9 +82,9 @@ export default function ProductCarousel({
   return (
     <section className="w-full">
       <div className="max-w-[88rem] mx-auto">
-        <div className="section-spacing px-8 md:px-16">
+        <div className="py-8 md:py-16 px-5 md:px-16">
           <div className={`w-full border-t-4 ${darkMode ? "border-[#E9E4DD]" : "border-[#000000]"} mb-4`}></div>
-          <h2 className={`caption mb-8 ${textColor}`}>{title}</h2>
+          <h2 className={`caption mb-6 md:mb-8 ${textColor}`}>{title}</h2>
           
           <div 
             ref={containerRef}
@@ -85,10 +95,10 @@ export default function ProductCarousel({
             <ProductGridSection 
               {...productGridProps} 
               products={visibleProducts}
-              columns={itemsPerPage}
+              columns={isMobile ? 1 : itemsPerPage}
             />
 
-            {shouldShowArrows && showArrows && (
+            {shouldShowArrows && (isMobile || showArrows) && (
               <>
                 <button
                   type="button"
