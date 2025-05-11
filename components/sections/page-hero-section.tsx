@@ -23,7 +23,7 @@ export default function HeroSection({ image, title, darkMode: propDarkMode }: He
 
   return (
     <section>
-      <div className="relative h-[65vh] md:h-[90vh]">
+      <div className="relative h-[65vh] md:h-[90vh] xl:h-screen xl:max-h-[900px] xl:aspect-[2.4/1]">
         <Image 
           src={image.src || "/placeholder.svg"} 
           alt={image.alt} 
