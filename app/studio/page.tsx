@@ -37,35 +37,35 @@ export default function StudioPage() { // Renamed from StoriesPage
     <Layout>
       <div className="max-w-[88rem] mx-auto">
         <div className="py-8 md:py-16 px-5 md:px-16 pb-10 md:pb-24">
-          <TextSection 
-            text={introText} 
-            align="left"
-            layoutVariant="studioIntro"
+        <TextSection 
+          text={introText} 
+          align="left"
+          layoutVariant="studioIntro"
             paddingY="pt-0 pb-6 md:py-0" 
-          />
+        />
 
           {/* Reduced top spacing by adjusting space-y */}
-          <div className="space-y-8 md:space-y-12 pt-8 md:pt-16">
-            {section1Stories.length > 0 && (
-              <ProductGridSection 
-                products={section1Stories}
-                columns={2} 
-              />
-            )}
+        <div className="space-y-8 md:space-y-12 pt-8 md:pt-16">
+          {section1Stories.length > 0 && (
+            <ProductGridSection 
+              products={section1Stories}
+              columns={2} 
+            />
+          )}
 
-            {section2Stories.length > 0 && (
-              <ProductGridSection 
-                products={section2Stories}
-                columns={2} 
-              />
-            )}
+          {section2Stories.length > 0 && (
+            <ProductGridSection 
+              products={section2Stories}
+              columns={2} 
+            />
+          )}
 
-            {section3Stories.length > 0 && (
-              <ProductGridSection 
-                products={section3Stories}
-                columns={2}
-              />
-            )}
+          {section3Stories.length > 0 && (
+            <ProductGridSection 
+              products={section3Stories}
+              columns={2}
+            />
+          )}
           </div>
         </div>
       </div>

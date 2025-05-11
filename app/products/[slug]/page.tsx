@@ -223,7 +223,7 @@ export default function ProductPage() {
                 </div>
 
                 <div>
-                  <Button className="bg-black text-white rounded-full px-6 py-2 md:px-8 md:py-2">GET IN TOUCH</Button>
+                  <Button variant="foumRounded" size="foumRounded">GET IN TOUCH</Button>
                 </div>
 
                 <div className="space-y-8 md:space-y-16">

@@ -52,16 +52,16 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <LayoutContext.Provider value={layoutValue}>
-      <div className={`min-h-screen ${bgColor} ${textColor} relative`}>
-        <Header navItems={navItems} darkMode={darkMode} />
-        <main className={`flex-grow relative ${!isHomePage ? 'pt-40 md:pt-56' : ''}`}>
-          {children}
-        </main>
-        <div className={`relative z-[998] ${contactBgColor}`}>
-          <ContactForm darkMode={darkMode} />
-        </div>
-        <NewsletterBanner />
+    <div className={`min-h-screen ${bgColor} ${textColor} relative`}>
+      <Header navItems={navItems} darkMode={darkMode} />
+      <main className={`flex-grow relative ${!isHomePage ? 'pt-40 md:pt-56' : ''}`}>
+        {children}
+      </main>
+      <div className={`relative z-[998] ${contactBgColor}`}>
+        <ContactForm darkMode={darkMode} />
       </div>
+      <NewsletterBanner />
+    </div>
     </LayoutContext.Provider>
   )
 }

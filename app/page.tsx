@@ -58,22 +58,22 @@ export default function Home() {
       <div className="max-w-[88rem] mx-auto">
         <div className="px-5 md:px-16 flex flex-col space-y-16 md:space-y-32 py-10 md:py-24">
           <TwoProductGrid products={featuredProducts} columns={2} />
-          
+        
           <ProductTextSection 
             image={kitchenStory.image}
             title={kitchenStory.title}
             description={kitchenStory.description}
             link={kitchenStory.link}
           />
-          
+        
           <TitleSection 
             title={studioDescription.title}
             centered={false}
             size="small"
           />
-          
+        
           <TwoProductGrid products={featuredProducts} columns={2} />
-          
+        
           <ProductTextSection 
             image={bedroomStory.image}
             title={bedroomStory.title}

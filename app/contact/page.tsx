@@ -1,6 +1,9 @@
+"use client"
+
 import Image from "next/image"
 import Layout from "@/components/layout"
 import AccordionSection from "@/components/accordion-section"
+import { Button } from "@/components/ui/button"
 
 export default function ContactPage() {
   const storeLocations = {
@@ -44,12 +47,12 @@ export default function ContactPage() {
 
               <p className="caption mb-8">BOOK AN APPOINTMENT:</p>
               <div className="flex flex-col sm:flex-row gap-4 mb-16">
-                <a href="tel:+37253420141" className="bg-foum-black text-white px-8 py-3 rounded-full">
-                  +372 5342 0141
-                </a>
-                <a href="mailto:info@foum.studio" className="bg-foum-black text-white px-8 py-3 rounded-full">
-                  info@foum.studio
-                </a>
+                <Button variant="foumRounded" size="foumRounded" asChild>
+                  <a href="tel:+37253420141">+372 5342 0141</a>
+                </Button>
+                <Button variant="foumRounded" size="foumRounded" asChild>
+                  <a href="mailto:info@foum.studio">info@foum.studio</a>
+                </Button>
               </div>
 
               <AccordionSection {...storeLocations} />
