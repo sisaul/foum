@@ -5,7 +5,6 @@ import TextSection from './text-section';
 import ImageCarousel from './image-carousel';
 import ProductGridSection from './product-grid-section';
 import ProductTextSection from './product-text-section';
-import ProjectPreviewSection from './project-preview-section';
 import ProductCarousel from './product-carousel';
 
 interface SectionRendererProps {
@@ -45,9 +44,6 @@ export default function SectionRenderer({ sections }: SectionRendererProps) {
             case 'productTextSection':
               // @ts-expect-error - Section types would be properly defined in a real app
               return <ProductTextSection key={_key} {...section} />;
-            case 'projectPreviewSection':
-              // @ts-expect-error - Section types would be properly defined in a real app
-              return <ProjectPreviewSection key={_key} {...section} />;
             case 'featuredProductsSection':
               return <ProductCarousel 
                 key={_key} 

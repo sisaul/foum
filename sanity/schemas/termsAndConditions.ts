@@ -1,8 +1,8 @@
-import { defineField, defineType } from 'sanity';
+import {defineType, defineField} from 'sanity'
 
 export default defineType({
-  name: 'homepage',
-  title: 'Homepage',
+  name: 'termsAndConditions',
+  title: 'Terms & Conditions',
   type: 'document',
   fields: [
     defineField({
@@ -44,4 +44,4 @@ export default defineType({
       title: 'title',
     },
   },
-}); 
+}) 

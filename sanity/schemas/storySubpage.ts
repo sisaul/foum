@@ -1,8 +1,8 @@
-import { defineField, defineType } from 'sanity';
+import { defineType, defineField } from 'sanity';
 
 export default defineType({
-  name: 'project',
-  title: 'Project',
+  name: 'storySubpage',
+  title: 'Stories Subpage',
   type: 'document',
   fields: [
     defineField({
@@ -44,26 +44,27 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'sections',
-      title: 'Sections',
+      name: 'body',
+      title: 'Body',
       type: 'array',
       of: [
-        { type: 'heroSection' },
-        { type: 'imageSection' },
-        { type: 'textSection' },
-        { type: 'imageCarousel' },
-        { type: 'productGridSection' },
-        { type: 'productTextSection' },
-        { type: 'projectPreviewSection' },
+        { type: 'block' },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            { name: 'alt', type: 'string', title: 'Alternative Text' },
+            { name: 'caption', type: 'string', title: 'Caption' },
+          ],
+        },
       ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'order',
-      title: 'Order',
-      type: 'number',
-      description: 'Used to sort projects in the studio page',
-      initialValue: 0,
+      name: 'publishedAt',
+      title: 'Published At',
+      type: 'datetime',
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

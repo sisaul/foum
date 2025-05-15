@@ -1,21 +1,14 @@
-import { defineField, defineType } from 'sanity';
+import {defineType, defineField} from 'sanity'
 
 export default defineType({
-  name: 'homepage',
-  title: 'Homepage',
+  name: 'products',
+  title: 'Products',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: { source: 'title', maxLength: 96 },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -38,10 +31,18 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'subpages',
+      title: 'Products Subpages',
+      type: 'array',
+      of: [
+        { type: 'reference', to: [{ type: 'productSubpage' }] },
+      ],
+    }),
   ],
   preview: {
     select: {
       title: 'title',
     },
   },
-}); 
+}) 

@@ -15,7 +15,7 @@ export default function AboutTextSection({
   description,
 }: AboutTextSectionProps) {
   return (
-    <section className="py-8 md:py-16">
+    <section className="">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 px-6 md:px-0">
         <div className="relative aspect-square">
           <Image 

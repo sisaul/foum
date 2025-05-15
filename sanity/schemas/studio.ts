@@ -1,8 +1,8 @@
-import { defineField, defineType } from 'sanity';
+import {defineType, defineField} from 'sanity'
 
 export default defineType({
-  name: 'homepage',
-  title: 'Homepage',
+  name: 'studio',
+  title: 'Studio',
   type: 'document',
   fields: [
     defineField({
@@ -38,10 +38,18 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'subpages',
+      title: 'Studio Subpages',
+      type: 'array',
+      of: [
+        { type: 'reference', to: [{ type: 'studioSubpage' }] },
+      ],
+    }),
   ],
   preview: {
     select: {
       title: 'title',
     },
   },
-}); 
+}) 

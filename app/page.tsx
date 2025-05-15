@@ -1,4 +1,3 @@
-import Layout from "@/components/layout"
 import HeroSection from "@/components/sections/page-hero-section"
 import TwoProductGrid from "@/components/sections/product-grid-section"
 import TitleSection from "@/components/sections/title-section"
@@ -50,7 +49,7 @@ export default function Home() {
   }
 
   return (
-    <Layout>
+    <>
       <HeroSection 
         image={heroData.image}
         title={heroData.title}
@@ -82,7 +81,7 @@ export default function Home() {
           />
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

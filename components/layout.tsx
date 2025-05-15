@@ -55,7 +55,7 @@ export default function Layout({ children }: LayoutProps) {
     <div className={`min-h-screen ${bgColor} ${textColor} relative`}>
       <Header navItems={navItems} darkMode={darkMode} />
       <div className="flex-grow flex flex-col items-center">
-        <main className={`w-full max-w-[1440px] mx-auto flex-grow relative${!isHomePage ? ' pt-40 md:pt-56' : ''}`}>
+        <main className={`w-full max-w-[1440px] mx-auto flex-grow relative ${!isHomePage ? 'pt-12 md:pt-24' : ''}`}>
           {children}
         </main>
         <div className="w-full max-w-[1440px] mx-auto">

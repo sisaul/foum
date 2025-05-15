@@ -48,7 +48,7 @@ export interface Story {
 // Project types
 export interface Section {
   _key: string;
-  _type: 'heroSection' | 'imageSection' | 'textSection' | 'imageCarousel' | 'productGridSection' | 'productTextSection' | 'projectPreviewSection' | 'featuredProductsSection';
+  _type: 'heroSection' | 'imageSection' | 'textSection' | 'imageCarousel' | 'productGridSection' | 'productTextSection' | 'featuredProductsSection';
   title?: string;
   text?: string;
   images?: { src: string; alt: string; }[];

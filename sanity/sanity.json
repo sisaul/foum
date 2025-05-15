@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "project": {
+    "name": "FOUM Studio"
+  },
+  "api": {
+    "projectId": "gTlraudQu",
+    "dataset": "production"
+  },
+  "plugins": [],
+  "env": {
+    "development": {
+      "plugins": []
+    },
+    "production": {
+      "plugins": []
+    }
+  }
+} 

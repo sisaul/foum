@@ -1,8 +1,8 @@
-import { defineField, defineType } from 'sanity';
+import { defineType, defineField } from 'sanity';
 
 export default defineType({
-  name: 'product',
-  title: 'Product',
+  name: 'productSubpage',
+  title: 'Product Subpage',
   type: 'document',
   fields: [
     defineField({
@@ -70,16 +70,29 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [{ type: 'reference', to: { type: 'category' } }],
-    }),
-    defineField({
       name: 'relatedProducts',
       title: 'Related Products',
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'product' } }],
+      of: [{ type: 'reference', to: { type: 'productSubpage' } }],
+    }),
+    defineField({
+      name: 'sections',
+      title: 'Sections',
+      type: 'array',
+      of: [
+        { type: 'heroSection' },
+        { type: 'imageSection' },
+        { type: 'textSection' },
+        { type: 'imageCarousel' },
+        { type: 'productGridSection' },
+        { type: 'productTextSection' },
+        { type: 'featuredProductsSection' },
+        { type: 'aboutTextSection' },
+        { type: 'titleSection' },
+        { type: 'titleTextLayoutSection' },
+        { type: 'imageGridSection' },
+        { type: 'singleImageCarousel' },
+      ],
     }),
   ],
   preview: {

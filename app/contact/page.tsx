@@ -33,7 +33,7 @@ export default function ContactPage() {
   return (
     <Layout>
       <div className="max-w-[88rem] mx-auto">
-        <div className="container-padding section-spacing pb-10 md:pb-24">
+        <div className="py-8 md:py-16 px-5 md:px-16 pb-10 md:pb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 standard-gap">
             <div className="relative aspect-square">
               <Image src="/images/showroom.png" alt="FOUM showroom" fill className="object-cover" />
