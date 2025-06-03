@@ -34,7 +34,7 @@ export default function ProductGridSection({
       : "grid-cols-1 md:grid-cols-4"
 
   return (
-    <div className={`grid ${gridClass} gap-6 md:gap-8`}>
+    <div className={`grid ${gridClass} gap-6 md:gap-8 items-stretch`}>
       {products.map((product) => {
         const productWithBasePath = { 
           ...product,

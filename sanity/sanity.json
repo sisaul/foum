@@ -4,10 +4,12 @@
     "name": "FOUM Studio"
   },
   "api": {
-    "projectId": "gTlraudQu",
+    "projectId": "lmpkzniq",
     "dataset": "production"
   },
-  "plugins": [],
+  "plugins": [
+    "@sanity/vision"
+  ],
   "env": {
     "development": {
       "plugins": []

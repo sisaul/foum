@@ -1,12 +1,12 @@
 import homepage from './homepage';
 import products from './products';
-import productSubpage from './productSubpage';
+import productSubpage, { downloadableAssetsSection, faqSection, findUsInSection } from './productSubpage';
 import stories from './stories';
 import storySubpage from './storySubpage';
 import about from './about';
 import studio from './studio';
 import studioSubpage from './studioSubpage';
-import contact from './contact';
+// import contact from './contact'; // Removed, file does not exist
 import privacyPolicy from './privacyPolicy';
 import termsAndConditions from './termsAndConditions';
 // Section/object types
@@ -32,7 +32,7 @@ const schemaTypes = [
   about,
   studio,
   studioSubpage,
-  contact,
+  // contact, // Removed
   privacyPolicy,
   termsAndConditions,
   // Section/object types
@@ -48,6 +48,9 @@ const schemaTypes = [
   titleTextLayoutSection,
   imageGridSection,
   singleImageCarousel,
+  downloadableAssetsSection,
+  faqSection,
+  findUsInSection,
 ];
 
 export default schemaTypes; 

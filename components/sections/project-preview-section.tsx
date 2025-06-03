@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-interface ProjectPreviewProps {
+export interface ProjectPreviewProps {
   title: string
   slug: string
   imageSrc: string

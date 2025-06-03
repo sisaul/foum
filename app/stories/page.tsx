@@ -1,88 +1,66 @@
-import Layout from "@/components/layout"
 import ProductGridSection from "@/components/sections/product-grid-section"
-import TextSection from "@/components/sections/text-section"
+import { sanityFetch } from "@/lib/sanity/live"
+import { urlFor } from "@/lib/sanity/image"
 
-export default function StoriesPage() {
-  // Mock intro text for the stories page
-  const introText = `FOUM Stories is a curated collection of inspirational pieces featuring our products in real-world settings. Each story showcases innovative design solutions, creative spaces, and the versatility of our products across different environments.`;
+// Define a type for subpages
+interface StorySubpageGridItem {
+  title: string;
+  slug: { current: string };
+  mainImage?: { asset?: { _ref: string; _type: string } };
+  heroImageSection?: { image?: { asset?: { _ref: string; _type: string }, alt?: string } };
+}
 
-  // Mock data for stories
-  const storiesData = [
-    { 
-      title: "KITCHEN INSPIRATION", 
-      slug: "kitchen-inspiration", 
-      imageSrc: "/images/stories/stories-1.png",
+export default async function StoriesPage() {
+  // Fetch the stories page data
+  const result = await sanityFetch({
+    query: `*[_type == "stories"][0]{
+      title,
+      subpages[]->{
+        _id,
+        title,
+        slug,
+        mainImage,
+        heroImageSection
+      }
+    }`
+  })
+  const data = result?.data || result
+  // const pageTitle = data?.title || "Stories";
+  const subpages = (data?.subpages || []).map((p: StorySubpageGridItem) => ({
+    title: p.title,
+    slug: p.slug.current,
+    imageSrc: p.mainImage && p.mainImage.asset
+      ? urlFor(p.mainImage).url()
+      : (p.heroImageSection && p.heroImageSection.image && p.heroImageSection.image.asset
+        ? urlFor(p.heroImageSection.image).url()
+        : "/placeholder.svg"),
+    basePath: "/stories",
       viewDetailsText: "READ MORE",
       viewDetailsMobile: true, 
       linkClassName: "md:underline md:decoration-1 md:underline-offset-4 md:text-base" 
-    },
-    { 
-      title: "MIXING MEDIUMS IN BEDROOM", 
-      slug: "mixing-mediums-in-bedroom", 
-      imageSrc: "/images/stories/stories-2.png",
-      viewDetailsText: "READ MORE", 
-      viewDetailsMobile: true,
-      linkClassName: "md:underline md:decoration-1 md:underline-offset-4 md:text-base" 
-    },
-    { 
-      title: "FROM FINE DINING TO HOME COOKING", 
-      slug: "fine-dining-to-home-cooking", 
-      imageSrc: "/images/stories/stories-3.png",
-      viewDetailsText: "READ MORE",
-      viewDetailsMobile: true, 
-      linkClassName: "md:underline md:decoration-1 md:underline-offset-4 md:text-base" 
-    },
-    { 
-      title: "STAYCATION IS HERE TO STAY", 
-      slug: "staycation", 
-      imageSrc: "/images/stories/stories-4.png",
-      viewDetailsText: "READ MORE",
-      viewDetailsMobile: true, 
-      linkClassName: "md:underline md:decoration-1 md:underline-offset-4 md:text-base" 
-    }
-  ];
+  }))
 
-  // Split stories into sections like in the studio page
-  const section1Stories = storiesData.slice(0, 2);
-  const section2Stories = storiesData.slice(2, 4);
+  // Split into rows of 2, as before
+  const rows = []
+  for (let i = 0; i < subpages.length; i += 2) {
+    rows.push(subpages.slice(i, i + 2))
+  }
 
   return (
-    <Layout>
-      <div className="max-w-[88rem] mx-auto">
+    <div className="max-w-[88rem] mx-auto bg-[#DDC17F]">
         <div className="py-8 md:py-16 px-5 md:px-16 pb-10 md:pb-24">
-        <TextSection 
-          text={introText} 
-          align="left"
-          layoutVariant="studioIntro"
-            paddingY="pt-0 pb-6 md:py-0" 
-        />
-
         <div className="space-y-8 md:space-y-12 pt-8 md:pt-16">
-          {section1Stories.length > 0 && (
+          {rows.map((row, idx) => (
             <ProductGridSection 
-              products={section1Stories.map(story => ({
-                ...story,
-                basePath: "/stories",
-              }))}
+              key={idx}
+              products={row}
               columns={2}
               largeImages={false}
             />
-          )}
-
-          {section2Stories.length > 0 && (
-            <ProductGridSection 
-              products={section2Stories.map(story => ({
-                ...story,
-                basePath: "/stories",
-              }))}
-              columns={2}
-              largeImages={false}
-            />
-          )}
-          </div>
+          ))}
         </div>
       </div>
-    </Layout>
+    </div>
   )
 }
 

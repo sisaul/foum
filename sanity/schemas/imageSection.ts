@@ -6,21 +6,13 @@ export default defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'images',
-      title: 'Images',
-      type: 'array',
-      of: [
-        {
-          type: 'image',
-          fields: [
-            { name: 'alt', type: 'string', title: 'Alt Text' },
-          ],
-        },
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      fields: [
+        { name: 'alt', type: 'string', title: 'Alt Text' },
       ],
+      options: { hotspot: true },
     }),
-    defineField({ name: 'caption', title: 'Caption', type: 'string' }),
-    defineField({ name: 'fullWidth', title: 'Full Width', type: 'boolean' }),
-    defineField({ name: 'layout', title: 'Layout', type: 'string', options: { list: [ { title: 'Grid', value: 'grid' }, { title: 'Single', value: 'single' } ] } }),
-    defineField({ name: 'columns', title: 'Columns', type: 'number', options: { list: [2, 3, 4] } }),
   ],
 }); 

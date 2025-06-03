@@ -31,7 +31,7 @@ export default function ProductCard({
     false;
   
   return (
-    <div className="flex flex-col mb-8 md:mb-0">
+    <div className="flex flex-col flex-1 min-h-full">
       <Link href={`${basePath}/${slug}`} className="block group">
         <div className={`relative ${largeImage ? 'aspect-[1.5/1]' : 'aspect-square'} mb-2`}>
           <Image
@@ -43,7 +43,7 @@ export default function ProductCard({
         </div>
       </Link>
       <div className="pt-3 md:pt-4 flex justify-between items-start">
-        <h3 className="caption">{title}</h3>
+        <h3 className="caption line-clamp-2 min-h-[2.5em]">{title}</h3>
         {(viewDetailsText || viewDetailsMobile) && (
           <Link 
             href={`${basePath}/${slug}`}

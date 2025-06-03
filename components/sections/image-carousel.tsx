@@ -10,7 +10,7 @@ interface CarouselItem {
   imageSrc: string;
 }
 
-interface ImageCarouselProps {
+export interface ImageCarouselProps {
   items: CarouselItem[];
   title?: string;
 }

@@ -1,8 +1,5 @@
-import Layout from "@/components/layout"
-
 export default function PrivacyPolicyPage() {
   return (
-    <Layout>
       <div className="max-w-[88rem] mx-auto">
         <div className="container-padding section-spacing">
           <h1 className="title mb-16">PRIVACY POLICY</h1>
@@ -73,6 +70,5 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </div>
-    </Layout>
   )
 } 

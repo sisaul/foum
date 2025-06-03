@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-interface ProductTextSectionProps {
+export interface ProductTextSectionProps {
   image: {
     src: string
     alt: string

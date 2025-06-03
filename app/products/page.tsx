@@ -1,28 +1,36 @@
-import Layout from "@/components/layout"
 import ProductGridSection from "@/components/sections/product-grid-section"
+import { sanityFetch } from "@/lib/sanity/live";
+import { urlFor } from "@/lib/sanity/image";
 
-export default function ProductsPage() {
-  const products = [
-    { title: "SIDEBOARD MAI", slug: "sideboard-mai", imageSrc: "/images/shelf-60.jpg" },
-    { title: "SHELF F20", slug: "shelf-f20", imageSrc: "/images/shelf-120.jpg" },
-    { title: "CANDLE HOLDER", slug: "candle-holder", imageSrc: "/images/shelf-60.jpg" },
-    { title: "MIRROR", slug: "mirror", imageSrc: "/images/shelf-120.jpg" },
-    { title: "HEADBOARD", slug: "headboard", imageSrc: "/images/shelf-60.jpg" },
-    { title: "BED", slug: "bed", imageSrc: "/images/shelf-120.jpg" },
-  ]
+export default async function ProductsPage() {
+  // Fetch the ordered product subpages from the products document
+  const result = await sanityFetch({
+    query: `*[_type == "products"][0]{
+      products[]->{
+        _id,
+        title,
+        slug,
+        mainImage
+      }
+    }`
+  });
+  const data = result?.data || result;
+  const products = (data?.products || []).map((p: { title: string; slug: { current: string }; mainImage?: any }) => ({
+    title: p.title,
+    slug: p.slug.current,
+    imageSrc: p.mainImage ? urlFor(p.mainImage).url() : "",
+  }));
 
   return (
-    <Layout>
-      <div className="max-w-[88rem] mx-auto">
-        <div className="py-8 md:py-16 px-5 md:px-16 pb-10 md:pb-24">
-          <ProductGridSection 
-            products={products} 
-            columns={2} 
-            largeImages={true}
-          />
-        </div>
+    <div className="max-w-[88rem] mx-auto">
+      <div className="py-8 md:py-16 px-5 md:px-16 pb-10 md:pb-24">
+        <ProductGridSection 
+          products={products} 
+          columns={2} 
+          largeImages={true}
+        />
       </div>
-    </Layout>
+    </div>
   )
 }
 

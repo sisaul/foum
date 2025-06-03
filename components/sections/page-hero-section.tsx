@@ -12,6 +12,7 @@ interface HeroSectionProps {
   darkMode?: boolean
 }
 
+export type { HeroSectionProps };
 export default function HeroSection({ image, title, darkMode: propDarkMode }: HeroSectionProps) {
   // Get darkMode from context, fallback to prop if provided
   const { darkMode: contextDarkMode } = useLayout();
@@ -22,8 +23,8 @@ export default function HeroSection({ image, title, darkMode: propDarkMode }: He
   const textColor = darkMode ? "text-white" : "text-foum-black";
 
   return (
-    <section className="w-screen ml-[calc(50%-50vw)]">
-      <div className="relative w-full h-[85vh]">
+    <section>
+      <div className="w-screen ml-[calc(50%-50vw)] relative h-[85vh]">
         <Image 
           src={image.src || "/placeholder.svg"} 
           alt={image.alt} 
@@ -32,10 +33,12 @@ export default function HeroSection({ image, title, darkMode: propDarkMode }: He
           priority 
         />
       </div>
-      <div className={`px-5 md:px-16 py-4 md:py-5 ${bgColor} ${textColor}`}>
-        <h2 className="caption md:whitespace-nowrap md:overflow-hidden md:text-ellipsis leading-tight">
-          {title}
-        </h2>
+      <div className="max-w-[88rem] mx-auto px-5 md:px-16">
+        <div className={`py-4 md:py-5 ${bgColor} ${textColor}`}> 
+          <h2 className="caption md:whitespace-nowrap md:overflow-hidden md:text-ellipsis leading-tight">
+            {title}
+          </h2>
+        </div>
       </div>
     </section>
   )

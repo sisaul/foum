@@ -1,4 +1,4 @@
-import client from '../sanity/client';
+import client from '@/lib/sanity/client';
 
 /**
  * Fetches data from Sanity using the provided query and parameters

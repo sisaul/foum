@@ -7,7 +7,13 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Main Title',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'date',
+      title: 'Date',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
@@ -16,6 +22,29 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: { source: 'title', maxLength: 96 },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'mainImage',
+      title: 'Grid Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', type: 'string', title: 'Alternative Text' },
+      ],
+      validation: (Rule) => Rule.required(),
+      description: 'This image is used for the studio grid/listing page.'
+    }),
+    defineField({
+      name: 'heroImageSection',
+      title: 'Hero Image Section',
+      type: 'imageSection',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'introTextSection',
+      title: 'Intro Text Section',
+      type: 'textSection',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -36,12 +65,14 @@ export default defineType({
         { type: 'imageGridSection' },
         { type: 'singleImageCarousel' },
       ],
+      description: 'Add any combination of layout and content sections after the intro.',
       validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
       title: 'title',
+      media: 'mainImage',
     },
   },
 }) 

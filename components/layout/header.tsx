@@ -40,7 +40,7 @@ export default function Header({ darkMode = false, navItems }: HeaderProps) {
     >
       {/* Only show the logo when menu is closed or on desktop */}
       {(!isMenuOpen || !isMobile) && (
-        <Link href="/" className={`${textColor} text-[60px] md:text-[120px] font-bold leading-[0.85] tracking-tighter w-[150px] md:w-[200px]`}>
+        <Link href="/" className={`-ml-2 ${textColor} text-[60px] md:text-[120px] font-bold leading-[0.85] tracking-tighter w-[150px] md:w-[200px]`}>
           FOUM
         </Link>
       )}

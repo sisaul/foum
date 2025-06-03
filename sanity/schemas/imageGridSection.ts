@@ -23,12 +23,7 @@ export default defineType({
       title: 'Columns',
       type: 'number',
       options: { list: [2, 3, 4] },
-    }),
-    defineField({
-      name: 'gap',
-      title: 'Gap',
-      type: 'string',
-      description: 'Tailwind gap class, e.g., gap-4, gap-8',
+      validation: (Rule) => Rule.required(),
     }),
   ],
 }) 

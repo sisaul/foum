@@ -7,7 +7,13 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Main Title',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'date',
+      title: 'Date',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
@@ -15,56 +21,51 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
+      options: { source: 'title', maxLength: 96 },
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'text',
-      validation: (Rule) => Rule.required().max(200),
     }),
     defineField({
       name: 'mainImage',
-      title: 'Main Image',
+      title: 'Grid Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
       fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-        },
+        { name: 'alt', type: 'string', title: 'Alternative Text' },
       ],
+      validation: (Rule) => Rule.required(),
+      description: 'This image is used for the stories grid/listing page.'
+    }),
+    defineField({
+      name: 'heroImageSection',
+      title: 'Hero Image Section',
+      type: 'imageSection',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'body',
-      title: 'Body',
+      name: 'introTextSection',
+      title: 'Intro Text Section',
+      type: 'textSection',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'sections',
+      title: 'Sections',
       type: 'array',
       of: [
-        { type: 'block' },
-        {
-          type: 'image',
-          options: { hotspot: true },
-          fields: [
-            { name: 'alt', type: 'string', title: 'Alternative Text' },
-            { name: 'caption', type: 'string', title: 'Caption' },
-          ],
-        },
+        { type: 'heroSection' },
+        { type: 'imageSection' },
+        { type: 'textSection' },
+        { type: 'imageCarousel' },
+        { type: 'productGridSection' },
+        { type: 'productTextSection' },
+        { type: 'featuredProductsSection' },
+        { type: 'aboutTextSection' },
+        { type: 'titleSection' },
+        { type: 'titleTextLayoutSection' },
+        { type: 'imageGridSection' },
+        { type: 'singleImageCarousel' },
       ],
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'publishedAt',
-      title: 'Published At',
-      type: 'datetime',
-      validation: (Rule) => Rule.required(),
+      description: 'Add any combination of layout and content sections after the intro.',
     }),
   ],
   preview: {

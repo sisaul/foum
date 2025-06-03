@@ -10,6 +10,7 @@ interface AboutTextSectionProps {
   description: string
 }
 
+export type { AboutTextSectionProps };
 export default function AboutTextSection({ 
   image, 
   description,

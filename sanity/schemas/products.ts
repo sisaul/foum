@@ -6,43 +6,30 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'label',
+      title: 'Label (for Studio only)',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      description: 'This is only for internal clarity in Sanity Studio. Not used on the site.',
     }),
     defineField({
-      name: 'sections',
-      title: 'Sections',
-      type: 'array',
-      of: [
-        { type: 'heroSection' },
-        { type: 'imageSection' },
-        { type: 'textSection' },
-        { type: 'imageCarousel' },
-        { type: 'productGridSection' },
-        { type: 'productTextSection' },
-        { type: 'featuredProductsSection' },
-        { type: 'aboutTextSection' },
-        { type: 'titleSection' },
-        { type: 'titleTextLayoutSection' },
-        { type: 'imageGridSection' },
-        { type: 'singleImageCarousel' },
-      ],
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'subpages',
-      title: 'Products Subpages',
+      name: 'products',
+      title: 'Products',
       type: 'array',
       of: [
         { type: 'reference', to: [{ type: 'productSubpage' }] },
       ],
+      validation: (Rule) => Rule.required().min(1),
+      description: 'Order the products as you want them displayed.',
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'label',
     },
+    prepare(selection) {
+      return {
+        title: selection.title || 'Products Page',
+      }
+    }
   },
 }) 
